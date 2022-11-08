@@ -1,8 +1,8 @@
-import Main from "./Layout/Main";
-import { Routes, Route } from "react-router-dom";
-import Top from "./Pages/Top/Top";
-import News from "./Pages/News/News";
-import "./App.css";
+import Main from './Layout/Main';
+import { Routes, Route } from 'react-router-dom';
+import Top from './Pages/Top/Top';
+import News from './Pages/News/News';
+import './App.css';
 
 const App = () => {
   return (
@@ -18,4 +18,3 @@ const App = () => {
 };
 
 export default App;
-
