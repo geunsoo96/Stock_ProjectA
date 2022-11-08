@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const webpack = require("webpack");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: `${path.resolve(__dirname, "../src")}/index.tsx`,
@@ -14,14 +15,14 @@ module.exports = {
     ],
   },
   plugins: [
+    new CleanWebpackPlugin({
+      cleanAfterEveryBuildPatterns: ["dist"],
+    }),
     new HtmlWebpackPlugin({
       template: "public/index.html",
     }),
     new webpack.ProvidePlugin({
       React: "react",
-    }),
-    new CleanWebpackPlugin({
-      cleanAfterEveryBuildPatterns: ["dist"],
     }),
   ],
   resolve: {
