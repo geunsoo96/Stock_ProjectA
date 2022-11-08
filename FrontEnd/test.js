@@ -1,2 +1,0 @@
-// start
-console.log("hello");
