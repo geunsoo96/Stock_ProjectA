@@ -12,6 +12,18 @@ module.exports = {
         use: "babel-loader",
         exclude: /node_modules/,
       },
+      {
+        test: /\.(jpe?g|png|gif)$/i,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 8192,
+              name: "/public/img/[name].[hash:8].[ext]",
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
