@@ -11,9 +11,9 @@ const HeaderBox = styled.div`
   color: white;
 
   & > div {
-    font-family: "SCD-3";
     font-size: 2rem;
     font-weight: bold;
+    font-family: "SCD-7";
     width: 200px;
     height: 80px;
     display: flex;
