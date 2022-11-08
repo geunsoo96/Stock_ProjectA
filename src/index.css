@@ -13,6 +13,7 @@
 }
 body {
   width: 1920px;
+  height: 100vh;
   min-width: 1920px;
   /* overflow-x: hidden; */
 }
