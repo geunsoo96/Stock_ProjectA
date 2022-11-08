@@ -1,53 +1,24 @@
 import styled from "styled-components"
-import React,{useEffect, useRef} from "react"
+import React,{useEffect, useRef, useState} from "react"
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 
-
-const LoadingPage = () =>{
-
-  const main = useRef<HTMLDivElement>(null);
-  
-  useEffect(()=>{
-    for(let i=0;i<10;i++){
-      let coin = document.createElement("div");
-      coin.style.width="50px";
-      coin.style.height="50px";
-      coin.style.backgroundColor="red";
-      coin.style.borderRadius="50%";
-      coin.style.position="absolute";
-      coin.style.top="50%";
-      main.current?.appendChild(coin);
-    }
-  })
-  
-  
- //클릭시 변동
-  function click(){
-   
-    // for(let i:number =0;i<10;i++){
-    //   let box = document.createElement('div')
-    //   box.style.width="50px";
-    //   box.style.height="50px";
-    //   box.style.borderRadius="50%";
-    //   box.style.backgroundColor="red";
-    //   box.style.position="absolute";
-    //   box.style.backgroundImage="url('coin.png')"
-    //   box.style.top='50%';
-    //   main.current?.appendChild(box);
-    // }
+  const LoadingPage = () =>{
+    const mainRef = useRef<HTMLDivElement>(null);
     
-  }
-  
-  return(
-    <Container ref={main}>
-      <div>
-        <MainBox onClick={click}>
-        </MainBox>
-        <TextBox>Loading</TextBox>
-      </div>
-    </Container>
 
+  return(
+    <Container>
+      {/* <canvas ref={canvasRef} style={{background:"white"}} width={1000} height={600} onClick={click}></canvas> */}
+      <Coin>
+        <div>
+          <img  className="image_rotate" src="img/coin.jpg"></img>
+          <img className="image_rotate" src="img/coin.jpg"></img>
+          <img className="image_rotate"src="img/coin.jpg"></img>
+        </div>
+      </Coin>
+      
+    </Container>
   )
 }
 export default LoadingPage;
@@ -58,20 +29,46 @@ const Container = styled.div`
   align-items: center;
   width:100%;
   height:100%;
+  background-color: white;
 
   & > div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    //background-color: red;
+    width:300px;
+    height:300px;
+    background-image: url("img/prog.png");
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100%;
+    & > img{
+      width:100%;
+      height:100%;
+    }
+    
   }
 `
-const TextBox = styled.div`
-  font-size: 30px;
-`
 
-const MainBox = styled.div`
-  width:200px;
-  height:200px;
-  background-color: #333;
+const Coin = styled.div`
+  border-radius: 50%;
+  
+  & > div {
+    position: absolute;
+    width:600px;
+    height:600px;
+    //background-color: red;
+    border-radius: 50%;
+    & > img {
+      width: 200px;
+      height:220px
+      
+    }
+    animation: rotate_image 10s linear infinite;transform-origin: 50% 50%;
+   
+    
+    
+  }
+
 `
