@@ -16,7 +16,7 @@ display: flex;
 const MainItem = styled.div`
 width: 1300px;
 height: 700px;
-background-color: gray;
+
 `
 
 const Main = () => {
