@@ -1,5 +1,4 @@
 import  styled  from 'styled-components';
-import  theme  from '@/Theme/theme';
 import { dummyData } from './../Pages/Detail/Detail';
 
 const DetailBox = styled.div`

@@ -18,7 +18,7 @@ const DetailHeaderBox = styled.div`
     color:#333;
   }
 `
-
+// 
 const DetailHeader = ({ data }: { data: dummyData }) => {
   return (
     <>
