@@ -20,9 +20,6 @@ module.exports = {
     new webpack.ProvidePlugin({
       React: "react",
     }),
-    new CleanWebpackPlugin({
-      cleanAfterEveryBuildPatterns: ["dist"],
-    }),
   ],
   resolve: {
     alias: {
