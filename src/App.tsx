@@ -6,7 +6,7 @@ import Detail from "./Pages/Detail/Detail";
 import "./App.css";
 import Algorithm from "./Pages/Algorithm/Algorithm";
 import Lotto from "./Pages/Algorithm/Lotto";
-import LoadingPage from "./Pages/Loading/LoadingPage"
+import LoadingPage from "./Pages/Loading/LoadingPage";
 
 const App = () => {
     return (
