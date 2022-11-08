@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import  theme  from '@/Theme/theme';
 import { useNavigate,Link } from "react-router-dom";
+import { useRef } from "react";
 
 
 
@@ -113,6 +114,8 @@ const HeaderBox = styled.div`
 
 const Header = () => {
   const navigate = useNavigate()
+  
+
   return (
     <>
       <HeaderBox>

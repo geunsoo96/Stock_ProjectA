@@ -10,6 +10,7 @@ border: 5px solid ${theme.mainCol};
 display: flex;
 flex-direction: column;
 align-items: center;
+background-color: rgba(255,255,255,0.3);
 &>div{
     font-size: 3.5rem;
     font-family: SCD-7;
