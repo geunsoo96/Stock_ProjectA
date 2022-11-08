@@ -6,6 +6,7 @@ import Detail from "./Pages/Detail/Detail";
 import "./App.css";
 import Algorithm from "./Pages/Algorithm/Algorithm";
 import Lotto from "./Pages/Algorithm/Lotto";
+import LoadingPage from "./Pages/Loading/LoadingPage"
 
 const App = () => {
     return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/Top" element={<Top />}></Route>
         <Route path="/Detail" element={<Detail />}></Route>
         <Route path="/News" element={<News />}></Route>
+        <Route path='/loading' element={<LoadingPage/>}></Route>
         </Route>
     </Routes>
     </>
