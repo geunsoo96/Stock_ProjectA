@@ -1,4 +1,5 @@
-import  styled  from 'styled-components';
+import theme from '@/Theme/theme';
+import styled  from 'styled-components';
 
 const TopBox = styled.div`
 width: inherit;
