@@ -1,8 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const webpack = require("webpack");
-// const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
-// BundleAnalyzer는 Bundle 최적화 용도로 보통 저는 사용합니다.
 
 module.exports = {
   entry: `${path.resolve(__dirname, "../src")}/index.tsx`,
@@ -21,6 +19,9 @@ module.exports = {
     }),
     new webpack.ProvidePlugin({
       React: "react",
+    }),
+    new CleanWebpackPlugin({
+      cleanAfterEveryBuildPatterns: ["dist"],
     }),
   ],
   resolve: {
