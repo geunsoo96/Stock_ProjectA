@@ -9,7 +9,7 @@ width: 1800px;
 height: 750px;
 align-items: center;
 justify-content: center;
-gap: 250px;
+gap: 100px;
 display: flex;
 `
 

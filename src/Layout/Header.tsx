@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import  theme  from '@/Theme/theme';
+
 
 const HeaderBox = styled.div`
   width: 1920px;
@@ -7,7 +9,7 @@ const HeaderBox = styled.div`
   align-items: center;
   gap: 200px;
   flex-direction: row;
-  background-color: rgba(254, 172, 49, 1);
+  background-color: ${theme.mainCol};
   color: white;
 
   & > div {
