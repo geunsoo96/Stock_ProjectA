@@ -15,7 +15,7 @@ const HeaderBox = styled.div`
   & > div {
     font-size: 2rem;
     font-weight: bold;
-    font-family: "SCD-7";
+    font-family: SCD-3;
     width: 200px;
     height: 80px;
     display: flex;
