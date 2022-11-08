@@ -6,14 +6,18 @@ const Root = styled.div`
 const Header = styled.div`
   width:inherit;
   height:80px;
-  border-bottom:5px #4D4D4D solid;
+  border-bottom:5px #222 solid;
   display:flex;
   align-items:flex-end;
   &>h1{
     font-size:5em;
+    font-family: SCD-7;
+    color:#333;
   }
   &>p{
     font-size:3em;
+    font-family: SCD-5;
+    color:#333;
   }
 `
 const Main = styled.div`
@@ -37,6 +41,7 @@ const Side = styled.div`
     width:100px;
     height:50px;
     font-size:2em;
+    font-family: SCD-5;
   }
 }
 &>div:nth-child(2){
@@ -50,11 +55,13 @@ const Side = styled.div`
       display:flex;
       align-items:center;
       font-size:3em;
+      font-family: SCD-5;
     }
     &>div:nth-child(2){
       display:flex;
       align-items:center;
       font-size:3em;
+      font-family: SCD-5;
     }
   }
 }
