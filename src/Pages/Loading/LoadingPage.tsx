@@ -1,6 +1,9 @@
 import styled from "styled-components"
 import React,{useEffect, useRef, useState} from "react"
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8694e5cdf8d19e295676c5bc69e1a3231b00739d
 const Main = styled.div`
   width:100%;
   height:100%;
@@ -120,6 +123,12 @@ const Text = styled.div`
         
       </Container>
     </Main>
+<<<<<<< HEAD
   )
 }
+=======
+
+
+  
+>>>>>>> 8694e5cdf8d19e295676c5bc69e1a3231b00739d
 export default LoadingPage;
