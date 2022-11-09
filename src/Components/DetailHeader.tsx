@@ -1,25 +1,26 @@
 import styled from "styled-components";
-import { dummyData } from "../Pages/Detail/Detail";
+import theme from "@/Theme/theme";
+import { trueData } from "@/Pages/Detail/Detail";
 
 const DetailHeaderBox = styled.div`
   width:inherit;
   height:80px;
-  border-bottom:5px #222 solid;
+  border-bottom:5px ${theme.mainCol} solid;
   display:flex;
   align-items:flex-end;
   &>h1{
     font-size:5em;
     font-family: YANGJIN;
-    color:#333;
+    color:#fff;
   }
   &>p{
     font-size:3em;
     font-family: SCD-7;
-    color:#333;
+    color:#fff;
   }
 `
 // 
-const DetailHeader = ({ data }: { data: dummyData }) => {
+const DetailHeader = ({ data }: { data: trueData }) => {
   return (
     <>
       <DetailHeaderBox>
