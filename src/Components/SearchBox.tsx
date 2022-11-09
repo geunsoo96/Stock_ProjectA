@@ -38,6 +38,10 @@ const SearchBox = () => {
     {name:'2사단',code:1002},
     {name:'3사단',code:1003},
     {name:'4사단',code:1004},
+    {name:'5사단',code:1005},
+    {name:'6사단',code:1006},
+    {name:'7사단',code:1007},
+    {name:'8사단',code:1008},
   ]
 
   const [search,setSearch] = useState("");
