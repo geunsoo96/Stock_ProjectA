@@ -11,16 +11,16 @@ const DetailHeaderBox = styled.div`
   &>h1{
     font-size:5em;
     font-family: YANGJIN;
-    color:#fff;
+    color:${theme.lightBlack};
   }
   &>p{
     font-size:3em;
     font-family: SCD-7;
-    color:#fff;
+    color:${theme.lightBlack};
   }
 `
 // 
-const DetailHeader = ({ data }: { data: trueData }) => {
+const DetailHeader = ({ data }: { data : trueData }) => {
   return (
     <>
       <DetailHeaderBox>

@@ -8,23 +8,6 @@ const Root = styled.div`
   width:inherit;
   height:inherit;
 `
-const Header = styled.div`
-  width:inherit;
-  height:80px;
-  border-bottom:5px #222 solid;
-  display:flex;
-  align-items:flex-end;
-  &>h1{
-    font-size:5em;
-    font-family: YANGJIN;
-    color:#333;
-  }
-  &>p{
-    font-size:3em;
-    font-family: SCD-7;
-    color:#333;
-  }
-`
 const Main = styled.div`
   width:inherit;
   height:620px;
@@ -65,12 +48,11 @@ const Side = styled.div`
       align-items:center;
       font-size:3em;
       font-family: SCD-5;
-      color:#333;
+      color:${theme.lightBlack};
     }
   }
 }
 `
-
 export interface trueData {
   name:string,
   code:number,

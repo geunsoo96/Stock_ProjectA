@@ -1,5 +1,6 @@
 import  styled  from 'styled-components';
 import { trueData } from "@/Pages/Detail/Detail";
+import theme from '@/Theme/theme';
 
 const DetailBox = styled.div`
 &>p{
@@ -8,7 +9,7 @@ const DetailBox = styled.div`
   align-items:center;
   font-size:3em;
   font-family: SCD-5;
-  color:#333;
+  color:${theme.lightBlack};
 }
 `
 
