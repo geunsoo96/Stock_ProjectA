@@ -5,12 +5,11 @@ import { useNavigate, Link } from 'react-router-dom';
 const Search = styled.div`
   width: 400px;
   height: 80px;
-  position:relative;
-  &>div{
+  &>div:nth-child(1){
     width:400px;
-    height:auto;
     display:flex;
     flex-direction: column;
+    z-index:3;
   }
 `
 const Input = styled.input`
@@ -26,7 +25,8 @@ const Div = styled.div`
   width:400px;
   margin-top: 10px;
   border-radius: 10px;
-  p{
+  z-index:3;
+  div{
     padding:10px;
     font-size: 30px;
   }
@@ -48,7 +48,9 @@ const SearchBox = () => {
   }
 
   const outFocus = () => {
-    setClicked(false);
+    setTimeout(() => {
+      setClicked(false);
+    }, 100);
   }
 
   const filter = arr.filter((p)=>{
@@ -56,18 +58,28 @@ const SearchBox = () => {
   })
 
   if(filter.length === 0){
-    filter[0] = {name:'검색결과가 없습니다.',code:404}
-  }
-
-  return (
-    <Search>
-      <div>
+    return (
+      <Search>
+        <div tabIndex={0} onBlur={outFocus}>
+          <Input placeholder="통합검색" type='text' onChange={onChange} onClick={onChange}/>
+          {clicked &&
+          <Div>
+            <div onClick={outFocus}>검색결과가 없습니다.</div>
+          </Div>
+          }
+        </div>
+      </Search>
+    );
+  } else {
+    return (
+      <Search>
+      <div onBlur={outFocus}>
         <Input placeholder="통합검색" type='text' onChange={onChange} onClick={onChange}/>
         {clicked &&
         <Div>
-          {filter.map(value =>
-            <Link to={`/Detail/${value.code}`}>
-              <p onClick={outFocus}>{value.name}</p>
+          {filter.map((item) =>
+            <Link to={`/Detail/${item.code}`}>
+              <div key={item.code} onClick={outFocus}>{item.name}</div>
             </Link>
             )
           }
@@ -75,7 +87,8 @@ const SearchBox = () => {
         }
       </div>
     </Search>
-  );
+    );
+  }
 };
 
 export default SearchBox;
