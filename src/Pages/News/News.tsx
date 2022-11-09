@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ListButton from "./ListButton";
 import NewsBox from "./NewsBox";
 import theme from "@/Theme/theme";
+import {useState, useEffect} from "react"
 
 const NewsContainer = styled.div`
 width: inherit;
@@ -33,47 +34,62 @@ const dummyList = [
 ]
 // https://apis.data.go.kr/B410001/ovseaMrktNewsService/ovseaMrktNews?serviceKey=uTVcynnfHvQE%2FYUDpYxd5H2oDt89Vg9pvZsbT%2Bd5fwvJSMHp7f2m7IAF4kIJDJF51jLa2xE3m8lpZG2aI3Cy4A%3D%3D&type=xml&numOfRows=1&pageNo=1
 
-const xhr = new XMLHttpRequest();
-for(let i = 1 ; i < 81 ; i ++){
-  const url = 'http://apis.data.go.kr/B410001/ovseaMrktNewsService/ovseaMrktNews'; /*URL*/
-  let queryParams = '?' + encodeURIComponent('serviceKey') + '='+'uTVcynnfHvQE%2FYUDpYxd5H2oDt89Vg9pvZsbT%2Bd5fwvJSMHp7f2m7IAF4kIJDJF51jLa2xE3m8lpZG2aI3Cy4A%3D%3D'; /*Service Key*/
-  queryParams += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('xml'); /**/
-    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('1'); /**/
-    queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent(`${i}`); /**/
-    // queryParams += '&' + encodeURIComponent('search1') + '=' + encodeURIComponent('베트남'); /**/
-    // queryParams += '&' + encodeURIComponent('search2') + '=' + encodeURIComponent('축구'); /**/
-    // queryParams += '&' + encodeURIComponent('search3') + '=' + encodeURIComponent('홍길동'); /**/
-    // queryParams += '&' + encodeURIComponent('search4') + '=' + encodeURIComponent('20180101'); /**/
-    // queryParams += '&' + encodeURIComponent('search5') + '=' + encodeURIComponent('식약품'); /**/
-    xhr.open('GET', url + queryParams);
-    xhr.onreadystatechange = function () {
-        if (this.readyState == 4) {
-            // console.log(this.responseXML?.documentElement.textContent);
-            let apiText = this.responseXML?.documentElement
-            // let parseXML = new DOMParser();
-            // let xmlDoc = parseXML.parseFromString(apiText, 'text/xml')
-            // let value = xmlDoc.getElementsByTagName("name")[0].textContent; console.log(value);
-            // console.log(xmlDoc)
-            console.log(apiText)
-            let title = apiText?.querySelector("newsTitl data")?.innerHTML
-            let writeDate = apiText?.querySelector("newsWrtDt data")?.innerHTML.split(' ')[0]
-            let sumar = apiText?.querySelector("cntntSumar data")?.innerHTML
-            console.log(title)
-            console.dir(writeDate)
-            console.dir(sumar)
-            // console.log('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
-            let arr = new Array()
-            arr.push({title: title, writeDate: writeDate, sumar: sumar})
-            console.log(arr)
-            return arr
-        }
-    };
-  }
-  xhr.send('');
+// const xhr = new XMLHttpRequest();
+// let NewsData = []
+//   const url = 'http://apis.data.go.kr/B410001/ovseaMrktNewsService/ovseaMrktNews'; /*URL*/
+//   let queryParams = '?' + encodeURIComponent('serviceKey') + '='+`uTVcynnfHvQE%2FYUDpYxd5H2oDt89Vg9pvZsbT%2Bd5fwvJSMHp7f2m7IAF4kIJDJF51jLa2xE3m8lpZG2aI3Cy4A%3D%3D&type=xml&numOfRows=1&pageNo=${encodeURIComponent(`${i}`)}`;
+//     xhr.open('GET', url + queryParams);
+//     xhr.onreadystatechange = function () {
+//         if (this.readyState == 4) {
+//             let apiText = this.responseXML?.documentElement
+//             console.log(apiText)
+//             let title = apiText?.querySelector("newsTitl data")?.innerHTML
+//             let writeDate = apiText?.querySelector("newsWrtDt data")?.innerHTML.split(' ')[0]
+//             let sumar = apiText?.querySelector("cntntSumar data")?.innerHTML
+//             console.log(title)
+//             console.dir(writeDate)
+//             console.dir(sumar)
+//             // console.log('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
+//             let arr = {title: title, writeDate: writeDate, sumar: sumar}
+//             console.log(arr)
+//         }
+//     };
+//   xhr.send('');
 
-
+export interface newsData {
+  title: string,
+  writeDate: string,
+  sumar: string
+}
 
 function News() {
+  const [newsData,setNewsData] = useState({})
+  const [button, setButton] = useState(false)
+
+  
+  useEffect(() => {
+    for (let i = 0; i < 5; i++) {
+      const url = 'http://apis.data.go.kr/B410001/ovseaMrktNewsService/ovseaMrktNews'; /*URL*/
+      let queryParams = '?' + encodeURIComponent('serviceKey') + '=' + `uTVcynnfHvQE%2FYUDpYxd5H2oDt89Vg9pvZsbT%2Bd5fwvJSMHp7f2m7IAF4kIJDJF51jLa2xE3m8lpZG2aI3Cy4A%3D%3D&type=xml&numOfRows=1&pageNo=${encodeURIComponent(`${i + 1}`)}`;
+      fetch(url + queryParams)
+        .then(res => res.text())
+        .then(data => {
+          let xml = new DOMParser().parseFromString(data, "text/xml");
+          let title = xml?.querySelector("newsTitl data")?.innerHTML
+          let writeDate = xml?.querySelector("newsWrtDt data")?.innerHTML.split(' ')[0]
+          let sumar = xml?.querySelector("cntntSumar data")?.innerHTML
+          console.log(title)
+          console.dir(writeDate)
+          console.dir(sumar)
+          let arr:object = {title:title, writeDate: writeDate, sumar:sumar}
+          setNewsData({...newsData, arr})
+          console.log(newsData)
+        })
+    }
+  }, [button])
+
+
+
   return (
     <>
       <NewsContainer>

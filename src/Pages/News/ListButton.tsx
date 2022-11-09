@@ -54,9 +54,9 @@ function ListButton() {
           </svg>
         </div>
 
-        {dummyNumberMaker().map((value) => {
+        {dummyNumberMaker().map((value, index) => {
           return(
-            <div>{value}</div>
+            <div key={index}>{value}</div>
           )
         })}
 
