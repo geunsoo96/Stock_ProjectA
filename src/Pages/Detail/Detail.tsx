@@ -1,6 +1,9 @@
 import styled from 'styled-components';
+import theme from "@/Theme/theme";
 import DetailData from '@/Components/DetailData';
 import DetailHeader from '@/Components/DetailHeader';
+import { useParams } from 'react-router-dom';
+
 const Root = styled.div`
   width:inherit;
   height:inherit;
@@ -30,7 +33,6 @@ const Main = styled.div`
 const Canvas = styled.canvas`
   width:1000px;
   height:inherit;
-  border:1px solid black;
 `
 const Side = styled.div`
   width:300px;
@@ -52,6 +54,9 @@ const Side = styled.div`
   width:inherit;
   height:520px;
   display:flex;
+  background-color: #fff;
+  border: 5px ${theme.mainCol} solid ;
+  border-radius: 20px;
   &>div:nth-child(1){
     width:120px;
     &>p{
@@ -60,11 +65,13 @@ const Side = styled.div`
       align-items:center;
       font-size:3em;
       font-family: SCD-5;
+      color:#333;
     }
   }
 }
 `
-export interface dummyData {
+
+export interface trueData {
   name:string,
   code:number,
   open:number,
@@ -76,19 +83,64 @@ export interface dummyData {
 
 const Detail = () => {
 
-  const dummyData = {
-    name:'1사단',
-    code:123456,
-    open:6666,
-    high:9999,
-    low:1111,
-    close:3333,
-    volume:4444,
+  const dummyData = [
+    {
+      name:'1사단',
+      code:1001,
+      open:6666,
+      high:9999,
+      low:1111,
+      close:3333,
+      volume:4444,
+    },
+    {
+      name:'2사단',
+      code:1002,
+      open:6643466,
+      high:549999,
+      low:1521211,
+      close:3423333,
+      volume:4423444,
+    },
+    {
+      name:'3사단',
+      code:1003,
+      open:66421366,
+      high:9423999,
+      low:111211,
+      close:3432333,
+      volume:4123444,
+    },
+    {
+      name:'4사단',
+      code:1004,
+      open:6643266,
+      high:91999,
+      low:12311111,
+      close:3436333,
+      volume:447844,
+    },
+  ]
+
+  let params = useParams();
+  let code = Number(params.code);
+  let a:number;
+  dummyData.map((value,index)=>{
+    if(code === value.code){
+      a = index;
+    }
+  })
+
+  function isIndex(element:any){
+    if(element.code === code){
+      return true;
+    }
   }
+  const trueData = dummyData.find(isIndex);
 
   return (
     <Root>
-      <DetailHeader data={dummyData}></DetailHeader>
+      <DetailHeader data={trueData}></DetailHeader>
       <Main>
         <Canvas></Canvas>
         <Side>
@@ -103,8 +155,9 @@ const Detail = () => {
               <p>저가</p>
               <p>종가</p>
               <p>거래량</p>
+              <p></p>
             </div>
-            <DetailData data={dummyData}></DetailData>
+            <DetailData data={trueData}></DetailData>
           </div>
         </Side>
       </Main>

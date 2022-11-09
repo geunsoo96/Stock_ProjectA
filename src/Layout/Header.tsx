@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import theme from '@/Theme/theme';
 import { useNavigate, Link } from 'react-router-dom';
 import { useRef } from 'react';
+import SearchBox from '@/Components/SearchBox';
 
 const HeaderBox = styled.div`
   width: 1920px;
   height: 150px;
   display: flex;
+  justify-content:space-evenly;
   align-items: center;
-  gap: 200px;
   flex-direction: row;
   background-color: ${theme.mainCol};
   color: white;
@@ -48,24 +49,6 @@ const HeaderBox = styled.div`
     }
   }
 
-  & > div {
-    font-size: 2rem;
-    font-weight: bold;
-    font-family: SCD-3;
-    width: 200px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: gray;
-    border-radius: 20px;
-
-    &:hover {
-      color: black;
-      cursor: pointer;
-    }
-  }
-
   & > a {
     & > {
       div {
@@ -88,15 +71,6 @@ const HeaderBox = styled.div`
     }
   }
 
-  & > input {
-    width: 400px;
-    height: 80px;
-    margin-left: 150px;
-    font-size: 2rem;
-    font-weight: bold;
-    border-radius: 10px;
-    padding-left: 20px;
-  }
   & > img {
     cursor: pointer;
     margin-left: 100px;
@@ -109,7 +83,9 @@ const Header = () => {
   return (
     <>
       <HeaderBox>
-        <input placeholder="통합검색"></input>
+        <div>
+        <SearchBox></SearchBox>
+        </div>
         <Link to={'/algorithm'}>
           <div>추천 알고리즘</div>
         </Link>
