@@ -3,6 +3,29 @@ import React,{useEffect, useRef} from "react"
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 
+  const Container = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    height:100%;
+  
+    & > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  `
+  const TextBox = styled.div`
+    font-size: 30px;
+  `
+  
+  const MainBox = styled.div`
+    width:200px;
+    height:200px;
+    background-color: #333;
+  `
 
 const LoadingPage = () =>{
 
@@ -24,7 +47,6 @@ const LoadingPage = () =>{
   
  //클릭시 변동
   function click(){
-   
     // for(let i:number =0;i<10;i++){
     //   let box = document.createElement('div')
     //   box.style.width="50px";
@@ -51,27 +73,3 @@ const LoadingPage = () =>{
   )
 }
 export default LoadingPage;
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width:100%;
-  height:100%;
-
-  & > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-`
-const TextBox = styled.div`
-  font-size: 30px;
-`
-
-const MainBox = styled.div`
-  width:200px;
-  height:200px;
-  background-color: #333;
-`

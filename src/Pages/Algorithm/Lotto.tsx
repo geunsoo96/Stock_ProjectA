@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import theme from "@/Theme/theme";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+
 import { current } from "@reduxjs/toolkit";
 const LottoParent = styled.div`
   width: inherit;
@@ -27,8 +28,12 @@ const LottoParent = styled.div`
     width: 300px;
     height: 80px;
     border: 3px solid ${theme.mainCol};
+    display: flex;
+  justify-content: center;
+  align-items: center;
   }
 `;
+// 
 const LottoButton = styled.button`
   width: 300px;
   height: 50px;
@@ -46,9 +51,23 @@ const LottoButton = styled.button`
 const Lotto = () => {
   const navigate = useNavigate();
   const [shake, setShake] = useState(false);
+  const [lotto,setLotto] = useState(null)
+  
   const animate = () => {
+    if(shake === false)
+    {
     setShake((current) => !current);
+    click();
+    }else{
+      alert("중복 클릭 안대용~")
+    }
+    
   };
+
+  const click = () => {setTimeout(()=>{setLotto(dummyStock[random]); setShake(false)},3000)}
+  
+  const dummyStock = ["비트코인", "이더리움", "에이다", "솔라나", "폴카닷", "도지코인", "엑시인피니티", "샌드박스", "리플"]
+  let random = Math.floor(Math.random()*dummyStock.length);
   return (
     <LottoParent>
       {/* position: relative;
@@ -67,7 +86,9 @@ const Lotto = () => {
       ></img>
       <div>↑↑↑클릭↑↑↑</div>
       <div>침팬지의 추천종목</div>
-      <div></div>
+      <div>
+        {lotto}
+      </div>
       <LottoButton
         onClick={() => {
           navigate("/algorithm");
