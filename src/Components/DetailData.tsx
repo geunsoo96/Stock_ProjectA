@@ -1,5 +1,5 @@
 import  styled  from 'styled-components';
-import { dummyData } from './../Pages/Detail/Detail';
+import { trueData } from "@/Pages/Detail/Detail";
 
 const DetailBox = styled.div`
 &>p{
@@ -8,10 +8,11 @@ const DetailBox = styled.div`
   align-items:center;
   font-size:3em;
   font-family: SCD-5;
+  color:#333;
 }
 `
 
-const DetailData = ({data}: {data:dummyData}) => {
+const DetailData = ({data}: { data : trueData }) => {
   return(
     <>
       <DetailBox>

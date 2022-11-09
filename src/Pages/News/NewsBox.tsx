@@ -14,6 +14,7 @@ const NewsBoxStyle = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    color: white;
     /* background-color: cadetblue; */
     & > div:nth-child(1){
       width: inherit;
