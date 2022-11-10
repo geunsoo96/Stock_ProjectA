@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import theme from "@/Theme/theme";
 import DetailData from './DetailData';
 import DetailHeader from './DetailHeader';
+import DetailCanvas from './DetailCanvas';
 import { useParams } from 'react-router-dom';
 
 const Root = styled.div`
@@ -12,10 +13,6 @@ const Main = styled.div`
   width:inherit;
   height:620px;
   display:flex;
-`
-const Canvas = styled.canvas`
-  width:1000px;
-  height:inherit;
 `
 const Side = styled.div`
   width:300px;
@@ -147,7 +144,7 @@ const Detail = () => {
     <Root>
       <DetailHeader data={trueData}></DetailHeader>
       <Main>
-        <Canvas></Canvas>
+        <DetailCanvas></DetailCanvas>
         <Side>
           <div>
             <input type="button" value={'1주일'}/>
