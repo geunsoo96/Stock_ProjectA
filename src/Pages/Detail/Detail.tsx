@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import theme from "@/Theme/theme";
-import DetailData from '@/Components/DetailData';
-import DetailHeader from '@/Components/DetailHeader';
+import DetailData from './DetailData';
+import DetailHeader from './DetailHeader';
 import { useParams } from 'react-router-dom';
 
 const Root = styled.div`
@@ -41,8 +41,9 @@ const Side = styled.div`
   border: 5px ${theme.mainCol} solid ;
   border-radius: 20px;
   &>div:nth-child(1){
-    width:120px;
+    width:140px;
     &>p{
+      margin-left: 20px;
       height:80px;
       display:flex;
       align-items:center;
@@ -131,22 +132,16 @@ const Detail = () => {
       volume:44,
     },
   ]
-
   let params = useParams();
   let code = Number(params.code);
-  let a:number;
-  dummyData.map((value,index)=>{
-    if(code === value.code){
-      a = index;
-    }
-  })
 
   function isIndex(element:any){
     if(element.code === code){
       return true;
     }
   }
-  const trueData = dummyData.find(isIndex);
+
+  const trueData : any = dummyData.find(isIndex);
 
   return (
     <Root>

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
+import theme from "@/Theme/theme";
 
 const Search = styled.div`
   width: 400px;
@@ -21,7 +22,7 @@ const Input = styled.input`
   padding-left: 20px;
 `
 const Div = styled.div`
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0,0,0,0.8);
   width:400px;
   margin-top: 10px;
   border-radius: 10px;
@@ -29,6 +30,12 @@ const Div = styled.div`
   div{
     padding:10px;
     font-size: 30px;
+    font-family: 'SCD-5';
+    &:hover{
+      background-color: rgba(0,0,0,0.3);
+      color: ${theme.mainCol};
+      cursor: pointer;
+    }
   }
 `
 
@@ -54,7 +61,7 @@ const SearchBox = () => {
   const outFocus = () => {
     setTimeout(() => {
       setClicked(false);
-    }, 100);
+    }, 200);
   }
 
   const filter = arr.filter((p)=>{
