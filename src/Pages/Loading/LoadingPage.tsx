@@ -119,7 +119,6 @@ const Text = styled.div`
         
       </Container>
     </Main>
-    )
-  }
-  
+  )
+}
 export default LoadingPage;
