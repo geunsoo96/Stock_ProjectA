@@ -1,29 +1,12 @@
 import styled from 'styled-components';
 import theme from "@/Theme/theme";
-import DetailData from '@/Components/DetailData';
-import DetailHeader from '@/Components/DetailHeader';
+import DetailData from './DetailData';
+import DetailHeader from './DetailHeader';
 import { useParams } from 'react-router-dom';
 
 const Root = styled.div`
   width:inherit;
   height:inherit;
-`
-const Header = styled.div`
-  width:inherit;
-  height:80px;
-  border-bottom:5px #222 solid;
-  display:flex;
-  align-items:flex-end;
-  &>h1{
-    font-size:5em;
-    font-family: YANGJIN;
-    color:#333;
-  }
-  &>p{
-    font-size:3em;
-    font-family: SCD-7;
-    color:#333;
-  }
 `
 const Main = styled.div`
   width:inherit;
@@ -58,19 +41,19 @@ const Side = styled.div`
   border: 5px ${theme.mainCol} solid ;
   border-radius: 20px;
   &>div:nth-child(1){
-    width:120px;
+    width:140px;
     &>p{
+      margin-left: 20px;
       height:80px;
       display:flex;
       align-items:center;
       font-size:3em;
       font-family: SCD-5;
-      color:#333;
+      color:${theme.lightBlack};
     }
   }
 }
 `
-
 export interface trueData {
   name:string,
   code:number,
@@ -82,7 +65,6 @@ export interface trueData {
 }
 
 const Detail = () => {
-
   const dummyData = [
     {
       name:'1사단',
@@ -92,8 +74,7 @@ const Detail = () => {
       low:1111,
       close:3333,
       volume:4444,
-    },
-    {
+    },{
       name:'2사단',
       code:1002,
       open:6643466,
@@ -101,8 +82,7 @@ const Detail = () => {
       low:1521211,
       close:3423333,
       volume:4423444,
-    },
-    {
+    },{
       name:'3사단',
       code:1003,
       open:66421366,
@@ -110,8 +90,7 @@ const Detail = () => {
       low:111211,
       close:3432333,
       volume:4123444,
-    },
-    {
+    },{
       name:'4사단',
       code:1004,
       open:6643266,
@@ -119,24 +98,50 @@ const Detail = () => {
       low:12311111,
       close:3436333,
       volume:447844,
+    },{
+      name:'5사단',
+      code:1005,
+      open:12,
+      high:4444,
+      low:1231,
+      close:333,
+      volume:484,
+    },{
+      name:'6사단',
+      code:1006,
+      open:9,
+      high:99,
+      low:11,
+      close:33,
+      volume:4,
+    },{
+      name:'7사단',
+      code:1007,
+      open:66,
+      high:99,
+      low:1,
+      close:33,
+      volume:444,
+    },{
+      name:'8사단',
+      code:1008,
+      open:663,
+      high:999,
+      low:77,
+      close:333,
+      volume:44,
     },
   ]
-
   let params = useParams();
   let code = Number(params.code);
-  let a:number;
-  dummyData.map((value,index)=>{
-    if(code === value.code){
-      a = index;
-    }
-  })
 
   function isIndex(element:any){
     if(element.code === code){
       return true;
     }
   }
-  const trueData = dummyData.find(isIndex);
+
+  const trueData : any = dummyData.find(isIndex);
 
   return (
     <Root>
