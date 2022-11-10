@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 const TotalBox = styled.div`
   height: 969px;
-  background: url('/img/background.png');
+  /* background: url('/img/background.png'); */
 `;
 
 const MainBox = styled.div`
