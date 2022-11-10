@@ -99,4 +99,5 @@ const Lotto = () => {
     </LottoParent>
   );
 };
+// 충돌 테스트
 export default Lotto;
