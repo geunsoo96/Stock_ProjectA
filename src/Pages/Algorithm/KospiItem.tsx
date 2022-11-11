@@ -18,6 +18,7 @@ const ItemBox = styled.div`
     padding-left: 40px;
   }
 `
+// test
 const KospiItem = ({data}:any) => {
   return (
     <>
