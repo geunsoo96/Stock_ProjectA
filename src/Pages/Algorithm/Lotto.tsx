@@ -66,7 +66,7 @@ const Lotto = () => {
 
   const click = () => {setTimeout(()=>{setLotto(dummyStock[random]); setShake(false)},3000)}
   
-  const dummyStock = ["비트코인", "이더리움", "에이다", "솔라나", "폴카닷", "도지코인", "엑시인피니티", "샌드박스", "리플"]
+  const dummyStock:any[] = ["비트코인", "이더리움", "에이다", "솔라나", "폴카닷", "도지코인", "엑시인피니티", "샌드박스", "리플"]
   let random = Math.floor(Math.random()*dummyStock.length);
   return (
     <LottoParent>
