@@ -16,6 +16,9 @@ const NewsBoxStyle = styled.div`
     justify-content: space-around;
     /* color: white; */
     /* background-color: cadetblue; */
+    &:hover{
+    cursor: pointer;
+    }
     & > div:nth-child(1){
       width: inherit;
       /* background-color: blue; */
