@@ -1,5 +1,5 @@
 from flask import Flask
-from dbconn import data_by_code , search_company_name , company_name
+from dbconn import data_by_code , search_company_name , company_name, total_list
 from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
@@ -24,6 +24,10 @@ def randomName():
   data = company_name()
   return data
 
+@app.route('/totalList')
+def totalList():
+  data = total_list()
+  return data
 
 if __name__ == '__main__':
   app.run(debug=True)
