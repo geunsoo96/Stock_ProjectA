@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import theme from '@/Theme/theme';
 import TopItem from './../../Components/TopItem';
 import TopBottomItem from '@/Components/TopBottomItem';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const TopBox = styled.div`
   width: inherit;
@@ -87,7 +89,6 @@ const TopBottomBox = styled.div`
   & > div {
     display: flex;
     gap: 100px;
-
     width: 90%;
   }
 `;
@@ -98,19 +99,50 @@ export interface TopdummyData {
 }
 
 function Top() {
-  const TopdummyData = [
-    { type: '시가', value: 6542 },
-    { type: '고가', value: 6808 },
-    { type: '저가', value: 6024 },
-    { type: '종가', value: 6438 },
-    { type: '거래량', value: 56148 },
+  const [samsungD, setSamsungD] = useState<any>([{}]);
+  const [samsungM, setSamsungM] = useState<any>(null);
+  
+  useEffect(()=>{
+    const getSamsungD = async () => {
+      try {
+        let response = await axios.get("http://127.0.0.1:5000/samsungPrice_d")
+        setSamsungD(response.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getSamsungD()
+  },[])
+
+  useEffect(()=>{
+    const getSamsungM = async () => {
+      try {
+        let response = await axios.get("http://127.0.0.1:5000/samsungPrice_m")
+        setSamsungM(response.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getSamsungM()
+  },[])
+
+  if(samsungM === null){
+    return null;
+  }
+  console.log(samsungM[0])
+  const SamsungMonthData = [
+    { type: '시가', value: samsungM[0].open },
+    { type: '고가', value: samsungM[0].high },
+    { type: '저가', value: samsungM[0].low },
+    { type: '종가', value: samsungM[0].close },
+    { type: '거래량', value: samsungM[0].volume },
   ];
 
-  const BottomdummyData = [
-    { type: '당일고가', value: 6542 },
-    { type: '당일저가', value: 6808 },
-    { type: '상한가', value: 6024 },
-    { type: '하향가', value: 6438 },
+  const SamsungDayData = [
+    { type: '당일고가', value: samsungD[0].high },
+    { type: '당일저가', value: samsungD[0].low },
+    { type: '상한가', value: samsungD[0].open*1.3 },
+    { type: '하향가', value: samsungD[0].open*0.7 },
   ];
 
   return (
@@ -118,8 +150,8 @@ function Top() {
       <div>
         <div>오늘의 TOP 거래 주식</div>
         <div>
-          <div>1사단</div>
-          <div>348769</div>
+          <div>삼성전자</div>
+          <div>005930</div>
         </div>
       </div>
       <hr />
@@ -131,7 +163,7 @@ function Top() {
             <div>주가</div>
           </div>
           <div>
-            {TopdummyData.map((value, index) => {
+            {SamsungMonthData.map((value, index) => {
               return <TopItem key={index} data={value}></TopItem>;
             })}
           </div>
@@ -139,7 +171,7 @@ function Top() {
       </ItemBox>
       <TopBottomBox>
         <div>
-          {BottomdummyData.map((value, index) => {
+          {SamsungDayData.map((value, index) => {
             return <TopBottomItem key={index} data={value}></TopBottomItem>;
           })}
         </div>
