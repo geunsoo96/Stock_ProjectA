@@ -1,7 +1,7 @@
 import { dummyData } from "@/Layout/Sidebar"
 import theme from "@/Theme/theme"
 import styled from "styled-components"
-import { dummyList } from "./News"
+import { newsdata } from "./News"
 
 const NewsBoxStyle = styled.div`
   width: inherit;
@@ -14,8 +14,11 @@ const NewsBoxStyle = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    color: white;
+    /* color: white; */
     /* background-color: cadetblue; */
+    &:hover{
+    cursor: pointer;
+    }
     & > div:nth-child(1){
       width: inherit;
       /* background-color: blue; */
@@ -42,13 +45,13 @@ const NewsBoxStyle = styled.div`
 `
 
 
-function NewsBox({data} : {data:dummyList}) {
+function NewsBox({value} : {value:newsdata}) {
   return (
     <NewsBoxStyle>
       <div>
-        <div>{data.id}</div>
-        <div>{data.text}</div>
-        <div>{data.date}</div>
+        <div>{value.title}</div>
+        <div>{value.sumar}</div>
+        <div>{value.date}</div>
       </div>
       <hr />
     </NewsBoxStyle>

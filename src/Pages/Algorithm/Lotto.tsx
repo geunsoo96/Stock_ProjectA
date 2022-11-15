@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import theme from "@/Theme/theme";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { useState, useRef, useEffect } from "react";
+
 
 import { current } from "@reduxjs/toolkit";
 const LottoParent = styled.div`
@@ -25,8 +27,8 @@ const LottoParent = styled.div`
   }
   & > div:nth-child(4) {
     /* 추천종목 나오는 박스 */
-    width: 300px;
-    height: 80px;
+    width: 500px;
+    height: 100px;
     border: 3px solid ${theme.mainCol};
     display: flex;
   justify-content: center;
@@ -51,23 +53,32 @@ const LottoButton = styled.button`
 const Lotto = () => {
   const navigate = useNavigate();
   const [shake, setShake] = useState(false);
-  const [lotto,setLotto] = useState(null)
-  
+  const [lotto,setLotto] = useState(null);
+  const [data, setData] = useState("");
+    const getData = async () => {
+      try {
+        let response = await axios.get("http://127.0.0.1:5000/randomName")
+        setData(response.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  if(data === undefined) {
+    return null;
+  }
   const animate = () => {
     if(shake === false)
     {
     setShake((current) => !current);
-    click();
+    setTimeout(() => {
+      getData();
+      setShake(false);
+    }, 3000);
     }else{
       alert("중복 클릭 안대용~")
     }
-    
   };
 
-  const click = () => {setTimeout(()=>{setLotto(dummyStock[random]); setShake(false)},3000)}
-  
-  const dummyStock = ["비트코인", "이더리움", "에이다", "솔라나", "폴카닷", "도지코인", "엑시인피니티", "샌드박스", "리플"]
-  let random = Math.floor(Math.random()*dummyStock.length);
   return (
     <LottoParent>
       {/* position: relative;
@@ -82,12 +93,12 @@ const Lotto = () => {
           transform: shake ? "rotate(360deg)" : "",
           transition: shake ? "3s" : "",
         }}
-        onClick={animate}
+        onClick={() => animate()}
       ></img>
       <div>↑↑↑클릭↑↑↑</div>
       <div>침팬지의 추천종목</div>
       <div>
-        {lotto}
+        {data}
       </div>
       <LottoButton
         onClick={() => {
