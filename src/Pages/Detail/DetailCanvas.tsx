@@ -1,48 +1,17 @@
 import { ResponsiveLine } from '@nivo/line';
-import { realData } from "@/Pages/Detail/Detail";
 
-const DetailCanvas = ({ data }: { data : realData[] }) => (
+const DetailCanvas = ({ data }: { data : any }) => (
   <ResponsiveLine
       data={[
   {
     "id": "week",
     "color": "hsl(281, 70%, 50%)",
-    "data": [
-      {
-        "x": 1,
-        "y": data[0].close
-      },
-      {
-        "x": 2,
-        "y": data[1].close
-      },
-      // {
-      //   "x": '2019-05-03',
-      //   "y": data[2].close
-      // },
-      // {
-      //   "x": '2019-05-04',
-      //   "y": data[3].close
-      // },
-      // {
-      //   "x": '2019-05-05',
-      //   "y": data[4].close
-      // },
-      // {
-      //   "x": '2019-05-06',
-      //   "y": data[5].close
-      // },
-      // {
-      //   "x": '2019-05-07',
-      //   "y": data[6].close
-      // }
-    ]
-  },
-]}
+    "data": data
+  },]}
       margin={{ top: 50, right: 150, bottom: 50, left: 60 }}
-      xScale={{ type: 'linear'}}
+      xScale={{type: 'time', format: '%Y-%m-%d', precision: 'day',}}
+      xFormat="time:%Y-%m-%d"
       yScale={{ type: 'linear', stacked: true, min: 30000, max: 40000 }}
-      yFormat=" >-.2f"
       curve="monotoneX"
       axisTop={null}
       axisRight={{

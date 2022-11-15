@@ -70,6 +70,18 @@ export interface realData {
   volume: number,
 }
 
+const time_format = (time:string) => {
+  let date = new Date(time);
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  return(
+    `${year}-${month >= 10 ? month : "0" + month}-${
+      day >= 10 ? day : "0" + day
+    }`
+  )
+}
+
 const Detail = () => {
   const dummyData = [
     {
@@ -151,49 +163,13 @@ const Detail = () => {
 
   const realData : realData[] = [
     {
-    "close": 34350,
-    "day": "Fri, 28 Jan 2022 00:00:00 GMT",
-    "high": 34450,
-    "low": 31900,
-    "no": 5269,
-    "open": 32250,
-    "volume": 195269
-    },
-    {
-    "close": 31900,
-    "day": "Thu, 27 Jan 2022 00:00:00 GMT",
-    "high": 34650,
-    "low": 31800,
-    "no": 5268,
-    "open": 34500,
-    "volume": 270877
-    },
-    {
-    "close": 34500,
-    "day": "Wed, 26 Jan 2022 00:00:00 GMT",
-    "high": 35450,
-    "low": 33800,
-    "no": 5267,
-    "open": 33800,
-    "volume": 131280
-    },
-    {
-    "close": 34400,
-    "day": "Tue, 25 Jan 2022 00:00:00 GMT",
-    "high": 36300,
-    "low": 34050,
-    "no": 5266,
-    "open": 35900,
-    "volume": 180196
-    },
-    {
-    "close": 35900,
-    "day": "Mon, 24 Jan 2022 00:00:00 GMT",
-    "high": 37150,
-    "low": 35650,
-    "no": 5265,
-    "open": 36400,
-    "volume": 102440
+    "close": 37700,
+    "day": "Thu, 20 Jan 2022 00:00:00 GMT",
+    "high": 37750,
+    "low": 36150,
+    "no": 5263,
+    "open": 36150,
+    "volume": 76388
     },
     {
     "close": 36850,
@@ -205,21 +181,65 @@ const Detail = () => {
     "volume": 81131
     },
     {
-    "close": 37700,
-    "day": "Thu, 20 Jan 2022 00:00:00 GMT",
-    "high": 37750,
-    "low": 36150,
-    "no": 5263,
-    "open": 36150,
-    "volume": 76388
+    "close": 35900,
+    "day": "Mon, 24 Jan 2022 00:00:00 GMT",
+    "high": 37150,
+    "low": 35650,
+    "no": 5265,
+    "open": 36400,
+    "volume": 102440
+    },
+    {
+    "close": 34400,
+    "day": "Tue, 25 Jan 2022 00:00:00 GMT",
+    "high": 36300,
+    "low": 34050,
+    "no": 5266,
+    "open": 35900,
+    "volume": 180196
+    },
+    {
+    "close": 34500,
+    "day": "Wed, 26 Jan 2022 00:00:00 GMT",
+    "high": 35450,
+    "low": 33800,
+    "no": 5267,
+    "open": 33800,
+    "volume": 131280
+    },
+    {
+    "close": 31900,
+    "day": "Thu, 27 Jan 2022 00:00:00 GMT",
+    "high": 34650,
+    "low": 31800,
+    "no": 5268,
+    "open": 34500,
+    "volume": 270877
+    },
+    {
+    "close": 34350,
+    "day": "Fri, 28 Jan 2022 00:00:00 GMT",
+    "high": 34450,
+    "low": 31900,
+    "no": 5269,
+    "open": 32250,
+    "volume": 195269
     }
   ]
+
+  const data = realData.map((item)=>{
+    return {
+      "x": time_format(item.day),
+      "y": item.close
+    }
+  })
+  console.log(data)
 
   return (
     <Root>
       <DetailHeader data={trueData}></DetailHeader>
       <Main>
-        <DetailCanvas data={realData}></DetailCanvas>
+        <DetailCanvas data={data}></DetailCanvas>
         <Side>
           <div>
             <input type="button" value={'1주일'}/>
