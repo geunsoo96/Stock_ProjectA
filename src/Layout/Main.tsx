@@ -2,21 +2,19 @@ import Sidebar from '@/Layout/Sidebar';
 import Header from '@/Layout/Header';
 import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
-
 const TotalBox = styled.div`
   height: 969px;
-  /* background: url('/img/background.png'); */
 `;
 
 const MainBox = styled.div`
   margin-top: 40px;
-  width: 1800px;
+  width: 1920px;
   height: 750px;
   align-items: center;
   justify-content: center;
   gap: 100px;
   display: flex;
-`;
+  `;
 
 const MainItem = styled.div`
   width: 1300px;

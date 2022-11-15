@@ -127,8 +127,8 @@ function Top() {
         <div>차트</div>
         <div>
           <div>
-            <div>일간</div>
-            <div>월간</div>
+            <div>항목</div>
+            <div>주가</div>
           </div>
           <div>
             {TopdummyData.map((value, index) => {
