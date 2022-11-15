@@ -79,7 +79,6 @@ const Lotto = () => {
     }
   };
 
-  // let random = Math.floor(Math.random()*data.length);
   return (
     <LottoParent>
       {/* position: relative;

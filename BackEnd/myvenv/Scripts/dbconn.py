@@ -27,7 +27,23 @@ def company_name():
   print(results['name'])
   return results['name']
 
-  
+def total_list():
+  conn = dbconnect()
+  cur = conn.cursor()
+  sql = 'SELECT market, code  FROM `stock586`.`companyList`'
+  cur.execute(sql)
+  results = cur.fetchall()
+  conn.close()
+  print(results[0])
+  companyList = [{}]
+  companyList[0]['name'] = results[0]['market']
+  # companyList[0][1]['name'] = results[0]['market']
+  print(companyList)
+  # for i in range(len(results)):
+    # print(results[i]['market'],results[i]['code'])
+    # companyList[i]['name'] = results[i]['code']
+
+  return results[0]['market']
 
 def search_company_name(name):
   conn = dbconnect()
