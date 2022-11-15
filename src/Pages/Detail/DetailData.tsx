@@ -1,5 +1,4 @@
 import  styled  from 'styled-components';
-import { trueData } from "@/Pages/Detail/Detail";
 import theme from '@/Theme/theme';
 
 const DetailBox = styled.div`
@@ -13,7 +12,7 @@ const DetailBox = styled.div`
 }
 `
 
-const DetailData = ({data}: { data : trueData }) => {
+const DetailData = ({data}: { data : any }) => {
   return(
     <>
       <DetailBox>
