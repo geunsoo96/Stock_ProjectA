@@ -43,7 +43,7 @@ def total_list():
     # print(results[i]['market'],results[i]['code'])
     # companyList[i]['name'] = results[i]['code']
 
-  return results[0]['market']
+  return results
 
 def search_company_name(name):
   conn = dbconnect()
