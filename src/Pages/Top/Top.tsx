@@ -4,6 +4,7 @@ import TopItem from './../../Components/TopItem';
 import TopBottomItem from '@/Components/TopBottomItem';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import DetailCanvas from '../Detail/DetailCanvas';
 
 const TopBox = styled.div`
   width: inherit;
@@ -101,7 +102,20 @@ export interface TopdummyData {
 function Top() {
   const [samsungD, setSamsungD] = useState<any>([{}]);
   const [samsungM, setSamsungM] = useState<any>(null);
+  const [samsungAll, setSamsungAll] = useState<any>(null);
   
+  const time_format = (time:string) => {
+    let date = new Date(time);
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    return(
+      `${year}-${month >= 10 ? month : "0" + month}-${
+        day >= 10 ? day : "0" + day
+      }`
+    )
+  }
+
   useEffect(()=>{
     const getSamsungD = async () => {
       try {
@@ -126,7 +140,22 @@ function Top() {
     getSamsungM()
   },[])
 
+  useEffect(()=>{
+    const getSamsungAll = async () => {
+      try {
+        let response = await axios.get("http://127.0.0.1:5000/samsungPrice_dayAll")
+        setSamsungAll(response.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getSamsungAll()
+  },[])
+
   if(samsungM === null){
+    return null;
+  }
+  if(samsungAll === null){
     return null;
   }
   console.log(samsungM[0])
@@ -145,6 +174,19 @@ function Top() {
     { type: '하향가', value: samsungD[0].open*0.7 },
   ];
 
+  const graphData = {
+    graph:[
+      {x:time_format(samsungAll[0].day),y:samsungAll[0].close},
+      {x:time_format(samsungAll[1].day),y:samsungAll[1].close},
+      {x:time_format(samsungAll[2].day),y:samsungAll[2].close},
+      {x:time_format(samsungAll[3].day),y:samsungAll[3].close},
+      {x:time_format(samsungAll[4].day),y:samsungAll[4].close},
+    ],
+    max:80000,
+    min:60000,
+    minus:20000
+  }
+
   return (
     <TopBox>
       <div>
@@ -156,7 +198,7 @@ function Top() {
       </div>
       <hr />
       <ItemBox>
-        <div>차트</div>
+      <DetailCanvas data={graphData}></DetailCanvas>
         <div>
           <div>
             <div>항목</div>
