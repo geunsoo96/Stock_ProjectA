@@ -181,6 +181,8 @@ function Top() {
       {x:time_format(samsungAll[2].day),y:samsungAll[2].close},
       {x:time_format(samsungAll[3].day),y:samsungAll[3].close},
       {x:time_format(samsungAll[4].day),y:samsungAll[4].close},
+      {x:time_format(samsungAll[5].day),y:samsungAll[5].close},
+      {x:time_format(samsungAll[6].day),y:samsungAll[6].close},
     ],
     max:80000,
     min:60000,

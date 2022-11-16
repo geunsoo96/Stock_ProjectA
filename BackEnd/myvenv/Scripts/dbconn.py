@@ -59,7 +59,7 @@ def samsung_price_dayAll():
   cur = conn.cursor()
   sql = 'SELECT * FROM `stock586`.`kospi_005930_d` ORDER BY day DESC'
   cur.execute(sql)
-  results = cur.fetchmany(5)
+  results = cur.fetchmany(7)
   conn.close()
   return results
 
