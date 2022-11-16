@@ -56,15 +56,6 @@ const Side = styled.div`
   }
 }
 `
-export interface realData {
-  close: number,
-  day: string,
-  high: number,
-  low: number,
-  no: number,
-  open: number,
-  volume: number,
-}
 
 const time_format = (time:string) => {
   let date = new Date(time);
@@ -85,7 +76,7 @@ const Detail = () => {
   const [nameData,setNameData] = useState()
 
   let params = useParams();
-  let code = Number(params.code)
+  let code = params.code
   const data:any = {
     graph:[],
     max:0,

@@ -5,6 +5,7 @@ const DetailBox = styled.div`
 &>p{
   height:80px;
   display:flex;
+  justify-content: flex-end;
   align-items:center;
   font-size:3em;
   font-family: SCD-5;
