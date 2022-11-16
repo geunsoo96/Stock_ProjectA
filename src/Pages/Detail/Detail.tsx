@@ -42,18 +42,6 @@ const Side = styled.div`
   background-color: #fff;
   border: 5px ${theme.mainCol} solid ;
   border-radius: 20px;
-  &>div:nth-child(1){
-    width:140px;
-    &>p{
-      margin-left: 20px;
-      height:80px;
-      display:flex;
-      align-items:center;
-      font-size:3em;
-      font-family: SCD-5;
-      color:${theme.lightBlack};
-    }
-  }
 }
 `
 
@@ -104,6 +92,8 @@ const Detail = () => {
       data.min = min-(minus*0.1);
       data.minus = data.max - data.min;
       detail.day = time_format(detail.day)
+      const chai = (res[0].close/res[1].close) - 1
+      detail.chai = chai;
       setGraphData(data);
       setDetailData(detail);
       setLoading(false);
@@ -176,14 +166,6 @@ const Detail = () => {
           <input type="button" value={'1개월'} onClick={month}/>
         </div>
         <div>
-          <div>
-            <p>시가</p>
-            <p>고가</p>
-            <p>저가</p>
-            <p>종가</p>
-            <p>거래량</p>
-            <p></p>
-          </div>
           <DetailData data={detailData}></DetailData>
         </div>
       </Side>
