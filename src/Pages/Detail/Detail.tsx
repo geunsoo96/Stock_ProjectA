@@ -6,7 +6,6 @@ import DetailCanvas from './DetailCanvas';
 import React, { useState, useEffect, SetStateAction } from "react"
 import { resolvePath, useParams } from 'react-router-dom';
 import LoadingPage from "../Loading/LoadingPage";
-
 const Root = styled.div`
   width:inherit;
   height:inherit;
@@ -55,16 +54,13 @@ const time_format = (time:string) => {
     }`
   )
 }
-
 const Detail = () => {
   const [loading, setLoading] = useState(true)
   const [graphData,setGraphData] = useState()
   const [detailData,setDetailData] = useState()
   const [nameData,setNameData] = useState()
-
   let params = useParams();
   let code = params.code
-
   const data:any = {
     graph:[],
     max:0,
@@ -76,7 +72,7 @@ const Detail = () => {
     .then((res)=>res.json())
     .then((res:any)=>{
       const close:number[] = [];
-      const detail = res[res.length-1]
+      const detail = res[0]
       const graph = res.map((item:any)=>{
         close.push(item.close)
         return {
@@ -98,8 +94,12 @@ const Detail = () => {
       setDetailData(detail);
       setLoading(false);
     })
+    fetch(`http://127.0.0.1:5000/nameByCode/${code}`)
+    .then((res)=>res.json())
+    .then((res:any)=>{
+      setNameData(res)
+    })
   },[])
-
   const week = () => {
     fetch(`http://127.0.0.1:5000/code/${code}`)
     .then((res)=>res.json())
@@ -144,11 +144,9 @@ const Detail = () => {
       setGraphData(data);
     })
   }
-
   if(loading){
     return (<LoadingPage></LoadingPage>)
   }
-
   if(!loading){
     return (
       <Root>
@@ -170,3 +168,10 @@ const Detail = () => {
 }
 };
 export default Detail;
+
+
+
+
+
+
+
