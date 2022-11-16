@@ -93,8 +93,6 @@ def company_name_byCode(code):
   conn.close()
   return results
 
-<<<<<<< HEAD
-
 def kospi_company_price(market):
   conn = dbconnect()
   cur = conn.cursor()
@@ -148,10 +146,8 @@ def volume_list():
 
   for x in range(len(lastClose)):
     volumeArr.append({'name':TableName[x],'close': closeArr[x]})
-
   return volumeArr
 
-=======
 def all_company_rank(market,day,column):
   conn = dbconnect()
   cur = conn.cursor()
@@ -197,4 +193,3 @@ def all_company_rank(market,day,column):
   return answer
 
 # all_company_rank('kospi','m','volume')
->>>>>>> origin/search
