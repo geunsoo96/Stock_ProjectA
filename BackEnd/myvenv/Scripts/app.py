@@ -1,5 +1,5 @@
 from flask import Flask
-from dbconn import data_by_code , search_company_name , company_name, samsung_data, samsung_price_m, samsung_price_d, samsung_price_dayAll
+from dbconn import *
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -14,10 +14,20 @@ def home():
 def code(code):
   data = data_by_code(code)
   return data
+
+@app.route('/nameByCode/<code>')
+def nameByCode(code):
+  data = company_name_byCode(code)
+  return data
   
 @app.route('/name/<name>')
 def name(name):
   data = search_company_name(name)
+  return data
+
+@app.route('/allName')
+def allName():
+  data = all_company_name()
   return data
 
 @app.route('/randomName')

@@ -56,15 +56,6 @@ const Side = styled.div`
   }
 }
 `
-export interface trueData {
-  name:string,
-  code:number,
-  open:number,
-  high:number,
-  low:number,
-  close:number,
-  volume:number,
-}
 export interface realData {
   close: number,
   day: string,
@@ -95,15 +86,6 @@ const Detail = () => {
 
   let params = useParams();
   let code = Number(params.code)
-  const trueData = {
-    name:'1사단',
-    code:1001,
-    open:6666,
-    high:9999,
-    low:1111,
-    close:3333,
-    volume:4444,
-  }
   const data:any = {
     graph:[],
     max:0,
@@ -115,7 +97,7 @@ const Detail = () => {
     .then((res)=>res.json())
     .then((res:any)=>{
       const close:number[] = [];
-      const detail = res[res.length-1]
+      const detail = res[0]
       const graph = res.map((item:any)=>{
         close.push(item.close)
         return {
@@ -130,9 +112,15 @@ const Detail = () => {
       data.max = max+(minus*0.1);
       data.min = min-(minus*0.1);
       data.minus = data.max - data.min;
+      detail.day = time_format(detail.day)
       setGraphData(data);
       setDetailData(detail);
       setLoading(false);
+    })
+    fetch(`http://127.0.0.1:5000/nameByCode/${code}`)
+    .then((res)=>res.json())
+    .then((res:any)=>{
+      setNameData(res)
     })
   },[])
 
@@ -188,7 +176,7 @@ const Detail = () => {
   if(!loading){
     return (
       <Root>
-    <DetailHeader data={trueData}></DetailHeader>
+    <DetailHeader data={nameData}></DetailHeader>
     <Main>
       <DetailCanvas data={graphData}></DetailCanvas>
       <Side>

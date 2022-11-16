@@ -10,6 +10,14 @@ const DetailBox = styled.div`
   font-family: SCD-5;
   color:${theme.lightBlack};
 }
+&>h1{
+  height:80px;
+  display:flex;
+  align-items:flex-end;
+  font-size:16px;
+  font-family: SCD-5;
+  color:${theme.lightBlack};
+}
 `
 
 const DetailData = ({data}: { data : any }) => {
@@ -21,6 +29,7 @@ const DetailData = ({data}: { data : any }) => {
         <p>{data.low}</p>
         <p>{data.close}</p>
         <p>{data.volume}</p>
+        <h1>{data.day} 기준</h1>
       </DetailBox>
     </>
   )

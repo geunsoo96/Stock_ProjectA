@@ -71,3 +71,21 @@ def search_company_name(name):
   results = cur.fetchall()
   conn.close()
   return results
+
+def all_company_name():
+  conn = dbconnect()
+  cur = conn.cursor()
+  sql = 'SELECT name,code FROM `stock586`.`companyList`'
+  cur.execute(sql)
+  results = cur.fetchall()
+  conn.close()
+  return results
+
+def company_name_byCode(code):
+  conn = dbconnect()
+  cur = conn.cursor()
+  sql = 'SELECT name,code FROM `stock586`.`companyList` WHERE code LIKE "%'+code+'%"'
+  cur.execute(sql)
+  results = cur.fetchone()
+  conn.close()
+  return results
