@@ -17,7 +17,7 @@ const TopItem = ({ data }: { data: TopdummyData }) => {
     <>
       <ItemBox>
         <div>{data.type}</div>
-        <div>{data.value.toLocaleString()}원</div>
+        <div>{data.value.toLocaleString()}</div>
       </ItemBox>
     </>
   );

@@ -41,15 +41,55 @@ const Div = styled.div`
 
 const SearchBox = () => {
   const arr = [
-    {name:'1사단',code:1001},
-    {name:'2사단',code:1002},
-    {name:'3사단',code:1003},
-    {name:'4사단',code:1004},
-    {name:'5사단',code:1005},
-    {name:'6사단',code:1006},
-    {name:'7사단',code:1007},
-    {name:'8사단',code:1008},
-  ]
+    {
+    "code": "000810",
+    "name": "삼성화재"
+    },
+    {
+    "code": "000815",
+    "name": "삼성화재우"
+    },
+    {
+    "code": "001360",
+    "name": "삼성제약"
+    },
+    {
+    "code": "005930",
+    "name": "삼성전자"
+    },
+    {
+    "code": "005935",
+    "name": "삼성전자우"
+    },
+    {
+    "code": "006400",
+    "name": "삼성SDI"
+    },
+    {
+    "code": "006405",
+    "name": "삼성SDI우"
+    },
+    {
+    "code": "006660",
+    "name": "삼성공조"
+    },
+    {
+    "code": "009150",
+    "name": "삼성전기"
+    },
+    {
+    "code": "009155",
+    "name": "삼성전기우"
+    },
+    {
+    "code": "010140",
+    "name": "삼성중공업"
+    },
+    {
+    "code": "010145",
+    "name": "삼성중공우"
+    }
+    ]
 
   const [search,setSearch] = useState("");
   const [clicked,setClicked] = useState(false);

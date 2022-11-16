@@ -10,7 +10,7 @@ const Main = styled.div`
 const Center = styled.div`
   width:300px;
   height:300px;
-  background-image: url("img/prog.png");
+  background-image: url("/img/prog.png");
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: 100%;
@@ -38,7 +38,7 @@ const Coin = styled.div`
     width:70px;
     height:70px;
     border-radius: 50%;
-    background-image: url("img/coin.jpg");
+    background-image: url("/img/coin.jpg");
     background-position: 50% 50%;
     background-size: 130px;
     background-repeat: no-repeat;
