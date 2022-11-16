@@ -97,8 +97,8 @@ def company_name_byCode(code):
 def volume_list():
   volumeArr=[]
   TableName = []
-  Volumes = []
-  VVV = []
+  lastClose = []
+  closeArr = []
   conn = dbconnect()
   cur = conn.cursor()
   sql ='SELECT TABLE_NAME FROM information_schema.tables WHERE TABLE_NAME LIKE "%kospi%m";'
@@ -107,39 +107,26 @@ def volume_list():
 
   index = 0
   for table in newTable:
-    sql2 = "SELECT volume FROM "+table['TABLE_NAME']+" ORDER BY volume DESC LIMIT 1"
+    sql2 = "SELECT close FROM "+table['TABLE_NAME']+" ORDER BY day DESC LIMIT 1"
     cur.execute(sql2)
-    Volumes.append(cur.fetchone())
+    lastClose.append(cur.fetchone())
     TableName.append(table['TABLE_NAME'])
-
-
-    #volumeArr.append(aa)
-    #volumeArr[index]["name"] = table['TABLE_NAME']
-    # volumeArr.append({'name':table['TABLE_NAME'],'volume':abc})
-    # print(volumeArr)
     index = index+1
   conn.close()
-  # print(abc)
   
-  
-
   i = 0; 
-  while i<len(Volumes):
-    if Volumes[i] == None:
+  while i<len(lastClose):
+    if lastClose[i] == None:
       print(i)
-      VVV.append(0)
-      print(Volumes[i])
+      closeArr.append(0)
+      print(lastClose[i])
     else:
-          abc = Volumes[i].values()
-          for key in abc:
-           VVV.append(key)
+          newClose = lastClose[i].values()
+          for key in newClose:
+            closeArr.append(key)
     i+=1     
 
-  
-  for x in range(len(Volumes)):
-    volumeArr.append({'name':TableName[x],'volume': VVV[x]})
-      
-  # print(VVV)
-  # print(volumeArr)
-  # print(abc)
+  for x in range(len(lastClose)):
+    volumeArr.append({'name':TableName[x],'close': closeArr[x]})
+
   return volumeArr
