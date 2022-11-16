@@ -89,3 +89,22 @@ def company_name_byCode(code):
   results = cur.fetchone()
   conn.close()
   return results
+
+def kospi_company_price(market):
+  conn = dbconnect()
+  cur = conn.cursor()
+  sql = f'SELECT TABLE_NAME FROM information_schema.tables WHERE table_NAME LIKE "%{market}%m"'
+  cur.execute(sql)
+  results = cur.fetchall()
+  for i in results:
+    sql = 'SELECT `close` FROM ' +i['TABLE_NAME']+ ' ORDER BY `close` DESC'
+    cur.execute(sql)
+    results2 = cur.fetchmany(10)
+  conn.close()
+  return results2
+
+
+  # sql = 'select code FROM `stock586`.`companyList`'
+
+
+  'SELECT TABLE_NAME FROM information_schema.tables'

@@ -56,5 +56,11 @@ def samsungPrice_dayAll():
   return data
 
 
+@app.route('/kospi_priceList/<market>')
+def kospi_priceList(market):
+  data = kospi_company_price(market)
+  return data
+
 if __name__ == '__main__':
   app.run(debug=True)
+
