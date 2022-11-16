@@ -30,6 +30,9 @@ const Side = styled.div`
     font-size:2em;
     font-family: SCD-5;
     border-radius:5px;
+    &:hover{
+      background-color: #ccc;
+    }
   }
 }
 &>div:nth-child(2){
@@ -100,25 +103,26 @@ const Detail = () => {
     close:3333,
     volume:4444,
   }
+  const data:any = {
+    graph:[],
+    max:0,
+    min:0,
+    minus:0
+  }
   useEffect(()=>{
     fetch(`http://127.0.0.1:5000/code/${code}`)
     .then((res)=>res.json())
     .then((res:any)=>{
       const close:number[] = [];
       const detail = res[res.length-1]
-      const data:any = {
-        graph:[],
-        max:0,
-        min:0,
-        minus:0
-      }
-      data.graph = res.map((item:any)=>{
+      const graph = res.map((item:any)=>{
         close.push(item.close)
         return {
           "x": time_format(item.day),
           "y": item.close
         }
       })
+      data.graph = graph;
       let max = Math.max(...close);
       let min = Math.min(...close);
       let minus = max - min;
@@ -130,6 +134,51 @@ const Detail = () => {
       setLoading(false);
     })
   },[])
+
+  const week = () => {
+    fetch(`http://127.0.0.1:5000/code/${code}`)
+    .then((res)=>res.json())
+    .then((res:any)=>{
+      const close:number[] = [];
+      const graph = res.map((item:any)=>{
+        close.push(item.close)
+        return {
+          "x": time_format(item.day),
+          "y": item.close
+        }
+      })
+      data.graph = graph.slice(0,5)
+      let max = Math.max(...close);
+      let min = Math.min(...close);
+      let minus = max - min;
+      data.max = max+(minus*0.1);
+      data.min = min-(minus*0.1);
+      data.minus = data.max - data.min;
+      setGraphData(data);
+    })
+  }
+  const month = () => {
+    fetch(`http://127.0.0.1:5000/code/${code}`)
+    .then((res)=>res.json())
+    .then((res:any)=>{
+      const close:number[] = [];
+      const graph = res.map((item:any)=>{
+        close.push(item.close)
+        return {
+          "x": time_format(item.day),
+          "y": item.close
+        }
+      })
+      data.graph = graph
+      let max = Math.max(...close);
+      let min = Math.min(...close);
+      let minus = max - min;
+      data.max = max+(minus*0.1);
+      data.min = min-(minus*0.1);
+      data.minus = data.max - data.min;
+      setGraphData(data);
+    })
+  }
 
   if(loading){
     return (<LoadingPage></LoadingPage>)
@@ -143,8 +192,8 @@ const Detail = () => {
       <DetailCanvas data={graphData}></DetailCanvas>
       <Side>
         <div>
-          <input type="button" value={'1주일'}/>
-          <input type="button" value={'1개월'}/>
+          <input type="button" value={'1주일'} onClick={week}/>
+          <input type="button" value={'1개월'} onClick={month}/>
         </div>
         <div>
           <div>

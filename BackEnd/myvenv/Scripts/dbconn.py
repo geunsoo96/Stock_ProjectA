@@ -13,7 +13,7 @@ def data_by_code(code):
   company = cur.fetchone()
   sql = 'SELECT * FROM '+company["TABLE_NAME"]+' ORDER BY day DESC'
   cur.execute(sql)
-  results = cur.fetchmany(10)
+  results = cur.fetchmany(30)
   conn.close()
   return results
 

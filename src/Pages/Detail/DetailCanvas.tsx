@@ -4,7 +4,7 @@ const DetailCanvas = ({ data }: { data : any }) => (
     <ResponsiveLine
         data={[
     {
-    "id": "week",
+    "id": "stock",
     "color": "hsl(281, 70%, 50%)",
     "data": data.graph
     },]}
@@ -12,23 +12,18 @@ const DetailCanvas = ({ data }: { data : any }) => (
         xScale={{type: 'time', format: '%Y-%m-%d', precision: 'day',}}
         xFormat="time:%Y-%m-%d"
         yScale={{ type: 'linear', stacked: true, min: data.min, max: data.max }}
-        curve="monotoneX"
+        // curve="monotoneX"
         axisTop={null}
         axisRight={{
-            tickValues: [ data.min, data.max ],
+            tickValues: [ data.min, data.min+data.minus/4, data.min+data.minus*2/4, data.min+data.minus*3/4 ,data.max ],
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            format: '.2s',
             legend: '',
             legendOffset: 0
         }}
         axisBottom={{
-            tickValues: [0,1,2,3,4,5,6],
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 0,
-            format: '.2f',
+            format: '%Y-%m-%d',
             legend: 'day',
             legendOffset: 36,
             legendPosition: 'middle'
@@ -38,9 +33,9 @@ const DetailCanvas = ({ data }: { data : any }) => (
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            format: '.2s',
+            format: '',
         }}
-        enableGridX={false}
+        enableGridX={true}
         colors={{ scheme: 'spectral' }}
         lineWidth={1}
         pointSize={4}
@@ -49,7 +44,6 @@ const DetailCanvas = ({ data }: { data : any }) => (
         pointBorderColor={{ from: 'serieColor' }}
         pointLabelYOffset={-12}
         useMesh={true}
-        gridXValues={[0,1,2,3,4,5,6]}
         gridYValues={[ data.min, data.min+data.minus/4, data.min+data.minus*2/4, data.min+data.minus*3/4 ,data.max ]}
         legends={[
             {
@@ -64,8 +58,6 @@ const DetailCanvas = ({ data }: { data : any }) => (
                 itemHeight: 12,
                 itemOpacity: 0.75,
                 symbolSize: 12,
-                symbolShape: 'circle',
-                symbolBorderColor: 'rgba(0, 0, 0, .5)',
                 effects: [
                     {
                         on: 'hover',

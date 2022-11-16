@@ -129,9 +129,9 @@ const SearchBox = () => {
         {clicked &&
         <Div>
           {filter.map((item) =>
-            <Link to={`/Detail/${item.code}`}>
-              <div key={item.code} onClick={outFocus}>{item.name}</div>
-            </Link>
+            <a key={item.code}href={`/Detail/${item.code}`}>
+              <div onClick={outFocus}>{item.name}</div>
+            </a>
             )
           }
         </Div>
