@@ -1,5 +1,5 @@
 from flask import Flask
-from dbconn import data_by_code , search_company_name , company_name, samsung_data, samsung_price_m, samsung_price_d
+from dbconn import data_by_code , search_company_name , company_name, samsung_data, samsung_price_m, samsung_price_d, samsung_price_dayAll
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -9,7 +9,7 @@ app.config['JSON_AS_ASCII'] = False
 @app.route('/')
 def home():
   return 'hello world'
- 
+
 @app.route('/code/<code>')
 def code(code):
   data = data_by_code(code)
@@ -25,11 +25,6 @@ def randomName():
   data = company_name()
   return data
 
-# @app.route('/totalList')
-# def totalList():
-#   data = total_list()
-#   return data
-
 @app.route('/samsungData')
 def samsungData():
   data = samsung_data()
@@ -43,6 +38,11 @@ def samsungPrice_m():
 @app.route('/samsungPrice_d')
 def samsungPrice_d():
   data = samsung_price_d()
+  return data
+
+@app.route('/samsungPrice_dayAll')
+def samsungPrice_dayAll():
+  data = samsung_price_dayAll()
   return data
 
 

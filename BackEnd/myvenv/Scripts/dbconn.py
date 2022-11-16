@@ -27,26 +27,6 @@ def company_name():
   print(results['name'])
   return results['name']
 
-# def total_list():
-#   conn = dbconnect()
-#   cur = conn.cursor()
-#   sql = 'SELECT market, code  FROM `stock586`.`companyList`'
-#   cur.execute(sql)
-#   results = cur.fetchall()
-#   conn.close()
-#   # print(results[0])
-#   # companyList = [{}]
-#   # companyList[0]['name'] = results[0]['market']
-#   # companyList[0][1]['name'] = results[0]['market']
-#   # print(companyList)
-#   sql2 = 'SELECT distinct table_name FROM all_tab_columns WHERE column_name=`name` ORDER BY table_name'
-#   cur.execute(sql2)
-#   # for i in range(len(results)):
-#   #   print(results[i]['market'],results[i]['code'])
-#   #   companyList[i]['name'] = results[i]['code']
-
-  return results
-
 def samsung_data():
   conn = dbconnect()
   cur = conn.cursor()
@@ -71,6 +51,15 @@ def samsung_price_d():
   sql = 'SELECT * FROM `stock586`.`kospi_005930_d` WHERE `day`="1988-06-03"'
   cur.execute(sql)
   results = cur.fetchall()
+  conn.close()
+  return results
+
+def samsung_price_dayAll():
+  conn = dbconnect()
+  cur = conn.cursor()
+  sql = 'SELECT * FROM `stock586`.`kospi_005930_d` ORDER BY day DESC'
+  cur.execute(sql)
+  results = cur.fetchmany(5)
   conn.close()
   return results
 
