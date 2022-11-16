@@ -71,3 +71,12 @@ def search_company_name(name):
   results = cur.fetchall()
   conn.close()
   return results
+
+def volume_list():
+  conn = dbconnect()
+  cur = conn.cursor()
+  sql = "SELECT TABLE_NAME FROM information_schema.tables WHERE TABLE_NAME LIKE '%kospi%m'"
+  cur.execute(sql)
+  results = cur.fetchall()
+  conn.close()
+  return results

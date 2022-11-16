@@ -1,5 +1,5 @@
 from flask import Flask
-from dbconn import data_by_code , search_company_name , company_name, samsung_data, samsung_price_m, samsung_price_d, samsung_price_dayAll
+from dbconn import data_by_code , search_company_name , company_name, samsung_data, samsung_price_m, samsung_price_d, samsung_price_dayAll,volume_list
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -45,6 +45,10 @@ def samsungPrice_dayAll():
   data = samsung_price_dayAll()
   return data
 
+@app.route("/volume")
+def volume():
+  data = volume_list()
+  return data 
 
 if __name__ == '__main__':
   app.run(debug=True)
