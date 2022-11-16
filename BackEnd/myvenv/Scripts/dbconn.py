@@ -95,10 +95,10 @@ def company_name_byCode(code):
 
 
 def volume_list():
-  volumeArr=[]
-  TableName = []
-  lastClose = []
-  closeArr = []
+  volumeArr=[] #최종배열
+  TableName = [] #조회할 전체 테이블명 담는 배열
+  lastClose = [] #제일 최근날짜 close값을 조회하여 객체로 저장
+  closeArr = [] #close 값만 배열에 따로 저장
   conn = dbconnect()
   cur = conn.cursor()
   sql ='SELECT TABLE_NAME FROM information_schema.tables WHERE TABLE_NAME LIKE "%kospi%m";'
