@@ -91,6 +91,7 @@ const Detail = () => {
   const [loading, setLoading] = useState(true)
   const [graphData,setGraphData] = useState()
   const [detailData,setDetailData] = useState()
+  const [nameData,setNameData] = useState()
 
   let params = useParams();
   let code = Number(params.code)
