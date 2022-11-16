@@ -44,7 +44,6 @@ const Side = styled.div`
   border-radius: 20px;
 }
 `
-
 const time_format = (time:string) => {
   let date = new Date(time);
   let year = date.getFullYear();
@@ -65,6 +64,7 @@ const Detail = () => {
 
   let params = useParams();
   let code = params.code
+
   const data:any = {
     graph:[],
     max:0,
@@ -76,7 +76,7 @@ const Detail = () => {
     .then((res)=>res.json())
     .then((res:any)=>{
       const close:number[] = [];
-      const detail = res[0]
+      const detail = res[res.length-1]
       const graph = res.map((item:any)=>{
         close.push(item.close)
         return {
@@ -97,11 +97,6 @@ const Detail = () => {
       setGraphData(data);
       setDetailData(detail);
       setLoading(false);
-    })
-    fetch(`http://127.0.0.1:5000/nameByCode/${code}`)
-    .then((res)=>res.json())
-    .then((res:any)=>{
-      setNameData(res)
     })
   },[])
 

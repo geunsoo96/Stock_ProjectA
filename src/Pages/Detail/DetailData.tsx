@@ -62,6 +62,7 @@ const DetailData = ({data}: { data : any }) => {
         <p>{data.low}</p>
         <p>{data.close}</p>
         <p>{data.volume}</p>
+
         <h1 style={{color}}>전날 대비 {percent.toFixed(2)}% {text}</h1>
         <h1>{data.day} 기준</h1>
       </DetailBox>
