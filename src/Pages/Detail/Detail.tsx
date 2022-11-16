@@ -43,6 +43,10 @@ const Side = styled.div`
   border-radius: 20px;
 }
 `
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/search
 const time_format = (time:string) => {
   let date = new Date(time);
   let year = date.getFullYear();

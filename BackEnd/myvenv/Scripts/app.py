@@ -25,7 +25,7 @@ def name(name):
   data = search_company_name(name)
   return data
 
-@app.route('/allName')
+@app.route('/allName/')
 def allName():
   data = all_company_name()
   return data
