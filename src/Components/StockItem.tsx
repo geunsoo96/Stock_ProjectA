@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import theme from '@/Theme/theme';
 import { rankData } from './../Layout/Sidebar';
+import { useNavigate, Link } from 'react-router-dom';
 
 const ItemBox = styled.div`
   width: 90%;
@@ -26,13 +27,15 @@ const ItemBox = styled.div`
 const StockItem = ({ data }: { data: rankData }) => {
   return (
     <>
-      <ItemBox>
-        <div>{data.name}</div>
-        <div>
-          <div>거래량 {data.value.toLocaleString()}</div>
-          <div>종가 {data.close.toLocaleString()}원</div>
-        </div>
-      </ItemBox>
+      <a href={`/Detail/${data.code}`}>
+        <ItemBox>
+          <div>{data.name}</div>
+          <div>
+            <div>거래량 {data.value.toLocaleString()}</div>
+            <div>종가 {data.close.toLocaleString()}원</div>
+          </div>
+        </ItemBox>
+      </a>
     </>
   );
 };

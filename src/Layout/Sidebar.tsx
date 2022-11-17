@@ -26,13 +26,23 @@ const StockBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  &>a{
+    width: 90%;
+    height: 10%;
+    background-color: ${theme.mainCol};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+  }
 `;
 
 export interface rankData {
   DB: string,
   close: number,
   name: string,
-  value: number
+  value: number,
+  code: number
   }
 
 const Sidebar = () => {
@@ -41,7 +51,8 @@ const Sidebar = () => {
       "DB": "kospi_252670_m",
       "close": 2530,
       "name": "KODEX 200선물인버스2X",
-      "value": 212304098
+      "value": 212304098,
+      "code": 124000
     }
   ];
   const [rankData,setRankData] = useState(dummyData)
