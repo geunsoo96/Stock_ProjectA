@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import theme from "@/Theme/theme";
-import { trueData } from "@/Pages/Detail/Detail";
 
 const DetailHeaderBox = styled.div`
   width:inherit;
@@ -20,7 +19,7 @@ const DetailHeaderBox = styled.div`
   }
 `
 // 
-const DetailHeader = ({ data }: { data : trueData }) => {
+const DetailHeader = ({ data }: { data : any }) => {
   return (
     <>
       <DetailHeaderBox>
