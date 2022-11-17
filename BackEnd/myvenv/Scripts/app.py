@@ -55,6 +55,10 @@ def samsungPrice_dayAll():
   data = samsung_price_dayAll()
   return data
 
+@app.route('/rank/<market>/<day>/<column>')
+def rank(market,day,column):
+  data = all_company_rank(market,day,column)
+  return data
 
 if __name__ == '__main__':
   app.run(debug=True)

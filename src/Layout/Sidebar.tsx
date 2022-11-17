@@ -1,6 +1,7 @@
 import StockItem from '@/Components/StockItem';
 import theme from '@/Theme/theme';
 import styled from 'styled-components';
+import React, { useState, useEffect, SetStateAction } from "react"
 
 const SidebarBox = styled.div`
   width: 350px;
@@ -27,32 +28,39 @@ const StockBox = styled.div`
   align-items: center;
 `;
 
-export interface dummyData {
-  name: string;
-  price: number;
-  yesterday: number;
-}
+export interface rankData {
+  DB: string,
+  close: number,
+  name: string,
+  value: number
+  }
 
 const Sidebar = () => {
   const dummyData = [
-    { name: '1사단', price: 216000, yesterday: 14800 },
-    { name: '2사단', price: 26000, yesterday: 8800 },
-    { name: '3사단', price: 2470000, yesterday: 1194800 },
-    { name: '4사단', price: 266000, yesterday: 194800 },
-    { name: '5사단', price: 446000, yesterday: 194800 },
-    { name: '6사단', price: 386000, yesterday: 194800 },
-    { name: '7사단', price: 926000, yesterday: 194800 },
-    { name: '8사단', price: 196000, yesterday: 94800 },
-    { name: '9사단', price: 116000, yesterday: 83600 },
-    { name: '10사단', price: 163000, yesterday: 144800 },
+    {
+      "DB": "kospi_252670_m",
+      "close": 2530,
+      "name": "KODEX 200선물인버스2X",
+      "value": 212304098
+    }
   ];
+  const [rankData,setRankData] = useState(dummyData)
+
+  useEffect(()=>{
+    fetch("http://127.0.0.1:5000/rank/kospi/m/volume")
+    .then((res)=>res.json())
+    .then((res:any)=>{
+      setRankData(res)
+      console.log(res)
+    })
+  },[])
 
   return (
     <>
       <SidebarBox>
         <div>거래량 TOP 10</div>
         <StockBox>
-          {dummyData.map((value, index) => {
+          {rankData.map((value, index) => {
             return <StockItem key={index} data={value}></StockItem>;
           })}
         </StockBox>
