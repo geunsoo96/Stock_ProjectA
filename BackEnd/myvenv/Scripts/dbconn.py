@@ -184,6 +184,7 @@ def all_company_rank(market,day,column):
     cur.execute(sql)
     data = cur.fetchone()
     item["name"] = data["name"]
+    item["code"] = find[1]
     sql = f'SELECT close FROM {name} ORDER BY day DESC limit 1'
     cur.execute(sql)
     data2 = cur.fetchone()
