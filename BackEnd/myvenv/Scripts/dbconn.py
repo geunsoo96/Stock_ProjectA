@@ -192,4 +192,4 @@ def all_company_rank(market,day,column):
   conn.close()
   return answer
 
-# all_company_rank('kospi','m','volume')
+all_company_rank('kospi','m','volume')
