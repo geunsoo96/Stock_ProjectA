@@ -14,18 +14,19 @@ def data_by_code(code):
   company = cur.fetchone()
   sql = 'SELECT * FROM '+company["TABLE_NAME"]+' ORDER BY day DESC'
   cur.execute(sql)
-  results = cur.fetchmany(30)
+  results = cur.fetchmany(250)
   conn.close()
   return results
 
-def company_name():
-  conn = dbconnect()
-  cur = conn.cursor()
-  sql = 'SELECT name FROM `stock586`.`companyList` WHERE market = "KOSPI" ORDER BY RAND()'
-  cur.execute(sql)
-  results = cur.fetchone()
-  conn.close()
-  return results
+# def company_namedd():
+#   conn = dbconnect()
+#   cur = conn.cursor()
+#   sql = 'SELECT name FROM `stock586`.`companyList` WHERE market = "KOSPI" ORDER BY RAND()'
+#   cur.execute(sql)
+#   results = cur.fetchone()
+#   conn.close()
+#   print(results['name'])
+#   return results['name']
 
 def samsung_data():
   conn = dbconnect()
@@ -63,23 +64,41 @@ def samsung_price_dayAll():
   conn.close()
   return results
 
-def all_company_name():
+def company_name(code):
   conn = dbconnect()
   cur = conn.cursor()
-  sql = 'SELECT name,code FROM `stock586`.`companyList`'
-  cur.execute(sql)
-  results = cur.fetchall()
+  if code == 'all':
+    sql = 'SELECT name,code FROM `stock586`.`companyList`'
+    cur.execute(sql)
+    results = cur.fetchall()
+  elif code == 'random':
+    sql = 'SELECT name FROM `stock586`.`companyList` WHERE market = "KOSPI" ORDER BY RAND()'
+    cur.execute(sql)
+    results = cur.fetchone()
+  else:
+    sql = f'SELECT name,code FROM `stock586`.`companyList` WHERE code LIKE "%{code}%"'
+    cur.execute(sql)
+    results = cur.fetchone()
   conn.close()
   return results
 
-def company_name_byCode(code):
-  conn = dbconnect()
-  cur = conn.cursor()
-  sql = f'SELECT name,code FROM `stock586`.`companyList` WHERE code LIKE "%{code}%"'
-  cur.execute(sql)
-  results = cur.fetchone()
-  conn.close()
-  return results
+# def all_company_name():
+#   conn = dbconnect()
+#   cur = conn.cursor()
+#   sql = 'SELECT name,code FROM `stock586`.`companyList`'
+#   cur.execute(sql)
+#   results = cur.fetchall()
+#   conn.close()
+#   return results
+
+# def company_name_byCode(code):
+#   conn = dbconnect()
+#   cur = conn.cursor()
+#   sql = f'SELECT name,code FROM `stock586`.`companyList` WHERE code LIKE "%{code}%"'
+#   cur.execute(sql)
+#   results = cur.fetchone()
+#   conn.close()
+#   return results
 
 def kospi_company_price(market):
   conn = dbconnect()
