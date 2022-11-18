@@ -56,14 +56,20 @@ const Lotto = () => {
   const [lotto,setLotto] = useState(null);
   const [data, setData] = useState("");
   const [img, setImg] = useState("/img/image.png");
-    const getData = async () => {
-      try {
-        let response = await axios.get("http://127.0.0.1:5000/randomName")
-        setData(response.data)
-      } catch (error) {
-        console.log(error)
-      }
+  const imgBox = [
+    "/img/절규하는 대표님.jpg",
+    "/img/생각하는 대표님.jpeg",
+    "/img/총든 대표님.jpg",
+    "/img/감탄하는 대표님.jpg",
+  ]
+  const getData = async () => {
+    try {
+      let response = await axios.get("http://127.0.0.1:5000/randomName")
+      setData(response.data)
+    } catch (error) {
+      console.log(error)
     }
+  }
   if(data === undefined) {
     return null;
   }
@@ -73,11 +79,12 @@ const Lotto = () => {
     setShake((current) => !current);
     setTimeout(() => {
       getData();
+      let random = Math.floor(Math.random()*imgBox.length);
+      setImg(imgBox[random])
       setTimeout(()=>{
+        setShake(false);
         setImg("/img/image.png")
       },500)
-      setImg("/img/절규하는 대표님.jpg")
-      setShake(false);
     }, 3000);
     }else{
       alert("중복 클릭 안대용~")
@@ -99,6 +106,7 @@ const Lotto = () => {
           transition: shake ? "3s" : "",
         }}
         onClick={() => animate()}
+        height={280}
       ></img>
       <div>↑↑↑클릭↑↑↑</div>
       <div>침팬지의 추천종목</div>
