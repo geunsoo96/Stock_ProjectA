@@ -64,16 +64,6 @@ def samsung_price_dayAll():
   conn.close()
   return results
 
-def search_company_name(name):
-  conn = dbconnect()
-  cur = conn.cursor()
-  sql = 'SELECT name,code FROM `stock586`.`companyList` WHERE name LIKE "%'+name+'%"'
-  cur.execute(sql)
-  results = cur.fetchall()
-  conn.close()
-  return results
-
-
 def all_company_name():
   conn = dbconnect()
   cur = conn.cursor()
@@ -83,11 +73,10 @@ def all_company_name():
   conn.close()
   return results
 
-
 def company_name_byCode(code):
   conn = dbconnect()
   cur = conn.cursor()
-  sql = 'SELECT name,code FROM `stock586`.`companyList` WHERE code LIKE "%'+code+'%"'
+  sql = f'SELECT name,code FROM `stock586`.`companyList` WHERE code LIKE "%{code}%"'
   cur.execute(sql)
   results = cur.fetchone()
   conn.close()
@@ -208,4 +197,4 @@ def all_company_rank(market,day,column):
   conn.close()
   return answer
 
-all_company_rank('kospi','m','volume')
+# all_company_rank('kospi','m','volume')
