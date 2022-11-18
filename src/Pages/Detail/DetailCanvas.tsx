@@ -45,30 +45,6 @@ const DetailCanvas = ({ data }: { data : any }) => (
         pointLabelYOffset={-12}
         useMesh={true}
         gridYValues={[ data.min, data.min+data.minus/4, data.min+data.minus*2/4, data.min+data.minus*3/4 ,data.max ]}
-        legends={[
-            {
-                anchor: 'bottom-right',
-                direction: 'column',
-                justify: false,
-                translateX: 140,
-                translateY: 0,
-                itemsSpacing: 2,
-                itemDirection: 'left-to-right',
-                itemWidth: 80,
-                itemHeight: 12,
-                itemOpacity: 0.75,
-                symbolSize: 12,
-                effects: [
-                    {
-                        on: 'hover',
-                        style: {
-                            itemBackground: 'rgba(0, 0, 0, .03)',
-                            itemOpacity: 1
-                        }
-                    }
-                ]
-            }
-        ]}
     />
 )
 

@@ -19,11 +19,6 @@ def code(code):
 def nameByCode(code):
   data = company_name_byCode(code)
   return data
-  
-@app.route('/name/<name>')
-def name(name):
-  data = search_company_name(name)
-  return data
 
 @app.route('/allName/')
 def allName():
