@@ -17,17 +17,17 @@ def code(code):
 
 @app.route('/nameByCode/<code>')
 def nameByCode(code):
-  data = company_name_byCode(code)
+  data = company_name(code)
   return data
 
 @app.route('/allName/')
 def allName():
-  data = all_company_name()
+  data = company_name('all')
   return data
 
 @app.route('/randomName')
 def randomName():
-  data = company_name()
+  data = company_name('random')
   return data
 
 @app.route('/samsungData')
