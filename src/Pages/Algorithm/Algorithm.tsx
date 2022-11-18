@@ -3,6 +3,7 @@ import theme from "@/Theme/theme";
 import { useNavigate } from "react-router-dom";
 import KospiItem from "./KospiItem";
 import axios from "axios";
+import { useEffect, useState } from "react";
 const AlgorithmParent = styled.div`
   /* 알고리즘 추천주 페이지 전체 설정 */
   width: inherit;
@@ -107,12 +108,32 @@ const Algorithm = () => {
 
   const navigate = useNavigate();
 
-  axios.get("http://127.0.0.1:5000/volume")
-  .then((res)=>{
-    console.log(res)
-  }).catch((err)=>{
-    console.log(err)
-  })
+  // // axios.get("http://127.0.0.1:5000/volume")
+  // // .then((res)=>{
+  // //   console.log(res)
+  // // }).catch((err)=>{
+  // //   console.log(err)
+  // // })
+  const [kospi,setKospi] = useState([]);
+  const [kosdak,setKosdak] = useState([]);
+  useEffect(()=>{
+    fetch("http://127.0.0.1:5000/kospi_close/kospi")
+    .then((res)=>res.json())
+    .then((res:any)=>{
+      setKospi(res);
+      console.log(res)
+    });
+    
+    fetch("http://127.0.0.1:5000/kospi_close/kosdak")
+    .then((res)=>res.json())
+    .then((res:any)=>{
+      setKosdak(res);
+      console.log(res)
+    });
+    
+
+  },[])
+  
   return (
     <AlgorithmParent>
       <h1>이달의 추천주식</h1>
@@ -120,14 +141,18 @@ const Algorithm = () => {
         <div>
           <h2>KOSPI</h2>
           <StockList>
-            {dummyKospi.map((value, index)=>{
+            {kospi.map((value, index)=>{
               return <KospiItem key={index} data={value}></KospiItem>
             })}
           </StockList>
         </div>
         <div>
           <h2>KOSDAQ</h2>
-          <StockList></StockList>
+          <StockList>
+          {kosdak.map((value, index)=>{
+              return <KospiItem key={index} data={value}></KospiItem>
+            })}
+          </StockList>
         </div>
       </StockBox>
       <AlgorithmButton

@@ -112,14 +112,14 @@ def kospi_company_price(market):
 
   'SELECT TABLE_NAME FROM information_schema.tables'
 
-def volume_list():
+def volume_list(market):
   volumeArr=[] #최종배열
   TableName = [] #조회할 전체 테이블명 담는 배열
   lastClose = [] #제일 최근날짜 close값을 조회하여 객체로 저장
   closeArr = [] #close 값만 배열에 따로 저장
   conn = dbconnect()
   cur = conn.cursor()
-  sql ='SELECT TABLE_NAME FROM information_schema.tables WHERE TABLE_NAME LIKE "%kospi%m";'
+  sql ='SELECT TABLE_NAME FROM information_schema.tables WHERE TABLE_NAME LIKE "%'+market+'%m"';
   cur.execute(sql)
   newTable = cur.fetchall()
 
