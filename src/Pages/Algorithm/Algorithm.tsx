@@ -69,14 +69,14 @@ const Algorithm = () => {
   const [kospi,setKospi] = useState([]);
   const [kosdak,setKosdak] = useState([]);
   useEffect(()=>{
-    fetch("http://127.0.0.1:5000/kospi_close/kospi")
+    fetch("http://127.0.0.1:5000/close_list/kospi")
     .then((res)=>res.json())
     .then((res:any)=>{
       setKospi(res);
       console.log(res)
     });
     
-    fetch("http://127.0.0.1:5000/kospi_close/kosdak")
+    fetch("http://127.0.0.1:5000/close_list/kosdak")
     .then((res)=>res.json())
     .then((res:any)=>{
       setKosdak(res);
