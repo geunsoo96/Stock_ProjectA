@@ -2,6 +2,7 @@ import styled from "styled-components";
 import theme from "@/Theme/theme";
 import React, { useState, useEffect, SetStateAction } from "react"
 import { Link } from "react-router-dom";
+
 const Search = styled.div`
   width: 400px;
   height: 80px;
@@ -49,6 +50,7 @@ const SearchBox = () => {
       setSearchData(res);
     })
   },[])
+
   const onChange = (e:any) => {
     setSearch(e.target.value);
     setClicked(true);
@@ -58,7 +60,8 @@ const SearchBox = () => {
       setClicked(false);
     }, 200);
   }
-  const filter = searchData.filter((p : any)=>{
+
+  const filter = searchData.filter((p:any)=>{
     return p.name.replace(" ","").toLocaleLowerCase().includes(search.replace(" ","").toLocaleLowerCase())
   })
   const filter10 = filter.slice(0,10)

@@ -2,7 +2,7 @@ import StockItem from '@/Components/StockItem';
 import theme from '@/Theme/theme';
 import styled from 'styled-components';
 import React, { useState, useEffect, SetStateAction } from "react"
-import LoadingPage from '@/Pages/Loading/LoadingPage';
+import LoadingPageSide from '@/Pages/Loading/LoadingPageSide';
 
 const SidebarBox = styled.div`
   width: 350px;
@@ -28,13 +28,8 @@ const StockBox = styled.div`
   flex-direction: column;
   align-items: center;
   &>a{
-    width: 90%;
-    height: 10%;
-    background-color: ${theme.mainCol};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
+    width:95%;
+    height:10%;
   }
 `;
 
@@ -47,7 +42,7 @@ export interface rankData {
   }
 
 const Sidebar = () => {
-  const [rankData,setRankData] = useState()
+  const [rankData,setRankData] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
@@ -55,13 +50,16 @@ const Sidebar = () => {
     .then((res)=>res.json())
     .then((res:any)=>{
       setRankData(res)
-      console.log(res)
       setLoading(false)
     })
   },[])
 
   if(loading){
-    return (<LoadingPage></LoadingPage>)
+    return (
+      <SidebarBox>
+        <LoadingPageSide></LoadingPageSide>
+      </SidebarBox>
+    )
   }
 
   if(!loading){
@@ -71,7 +69,9 @@ const Sidebar = () => {
         <div>거래량 TOP 10</div>
         <StockBox>
           {rankData.map((value:any, index:any) => {
-            return <StockItem key={index} data={value}></StockItem>;
+            return (
+            <StockItem key={index} data={value}></StockItem>
+            )
           })}
         </StockBox>
       </SidebarBox>
