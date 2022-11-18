@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import theme from "@/Theme/theme";
 import React, { useState, useEffect, SetStateAction } from "react"
+import { Link } from "react-router-dom";
 
 const Search = styled.div`
   width: 400px;
@@ -66,6 +67,8 @@ const SearchBox = () => {
     return p.name.replace(" ","").toLocaleLowerCase().includes(search.replace(" ","").toLocaleLowerCase())
   })
 
+  const filter10 = filter.slice(0,10)
+
   if(filter.length === 0){
     return (
       <Search>
@@ -86,10 +89,10 @@ const SearchBox = () => {
         <Input placeholder="통합검색" type='text' onChange={onChange} onClick={onChange}/>
         {clicked &&
         <Div>
-          {filter.map((item:any) =>
-            <a key={item.code}href={`/Detail/${item.code}`}>
+          {filter10.map((item:any) =>
+            <Link key={item.code} to={`/Detail/${item.code}`}>
               <div onClick={outFocus}>{item.name}</div>
-            </a>
+            </Link>
             )
           }
         </Div>
