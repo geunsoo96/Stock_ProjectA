@@ -3,7 +3,6 @@ import theme from '@/Theme/theme';
 import TopItem from './../../Components/TopItem';
 import TopBottomItem from '@/Components/TopBottomItem';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import DetailCanvas from '../Detail/DetailCanvas';
 
 const TopBox = styled.div`
@@ -132,15 +131,11 @@ function Top() {
   },[])
 
   useEffect(()=>{
-    const getSamsungAll = async () => {
-      try {
-        let response = await axios.get("http://127.0.0.1:5000/samsungPrice_dayAll")
-        setSamsungAll(response.data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getSamsungAll()
+    fetch("http://127.0.0.1:5000/samsungPrice_dayAll")
+    .then((res)=>res.json())
+    .then((res:any)=>{
+      setSamsungAll(res)
+    })
   },[])
 
   if(samsungM === null){

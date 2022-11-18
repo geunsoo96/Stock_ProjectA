@@ -62,14 +62,24 @@ const Lotto = () => {
     "/img/총든 대표님.jpg",
     "/img/감탄하는 대표님.jpg",
   ]
-  const getData = async () => {
-    try {
-      let response = await axios.get("http://127.0.0.1:5000/randomName")
-      setData(response.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  // const getData = async () => {
+  //   try {
+  //     let response = await axios.get("http://127.0.0.1:5000/randomName")
+  //     setData(response.data)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
+
+    const getData:any = () => {fetch("http://127.0.0.1:5000/randomName")
+    .then((res)=>res.json())
+    .then((res:any)=>{
+      setData(res.name)
+      console.log(res)
+    })}
+
+
+
   if(data === undefined) {
     return null;
   }
@@ -93,19 +103,13 @@ const Lotto = () => {
 
   return (
     <LottoParent>
-      {/* position: relative;
-    bottom: 40px;
-    height: 160px;
-    width: 160px;
-    transform: rotate(360deg);
-    transition: 10s; */}
       <img
         src= {img}
         style={{
           transform: shake ? "rotate(360deg)" : "",
           transition: shake ? "3s" : "",
         }}
-        onClick={() => animate()}
+        onClick={() => {animate()}}
         height={280}
       ></img>
       <div>↑↑↑클릭↑↑↑</div>
