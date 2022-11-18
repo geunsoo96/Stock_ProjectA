@@ -25,7 +25,7 @@ def name(name):
   data = search_company_name(name)
   return data
 
-@app.route('/allName')
+@app.route('/allName/')
 def allName():
   data = all_company_name()
   return data
@@ -60,5 +60,15 @@ def volume():
   data = volume_list()
   return data 
 
+@app.route('/kospi_priceList/<market>')
+def kospi_priceList(market):
+  data = kospi_company_price(market)
+  
+@app.route('/rank/<market>/<day>/<column>')
+def rank(market,day,column):
+  data = all_company_rank(market,day,column)
+  return data
+
 if __name__ == '__main__':
   app.run(debug=True)
+
