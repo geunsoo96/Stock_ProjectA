@@ -11,6 +11,7 @@ const SidebarBox = styled.div`
   border: 5px solid ${theme.mainCol};
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.3);
   & > div {
