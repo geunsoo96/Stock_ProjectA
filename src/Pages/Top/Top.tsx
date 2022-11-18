@@ -171,7 +171,7 @@ function Top() {
     { type: '당일고가', value: samsungD[0].high },
     { type: '당일저가', value: samsungD[0].low },
     { type: '상한가', value: samsungD[0].open*1.3 },
-    { type: '하향가', value: samsungD[0].open*0.7 },
+    { type: '하한가', value: samsungD[0].open*0.7 },
   ];
 
   const graphData = {
