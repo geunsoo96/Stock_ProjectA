@@ -109,10 +109,10 @@ def kospi_company_price(market):
 
 
 def close_list(market):
-  closeList=[] #최종배열
+  closeList=[] #최종배열값 저장
   TableName = [] #조회할 전체 테이블명 담는 배열
   lastClose = [] #제일 최근날짜 close값을 조회하여 객체로 저장
-  closeArr = [] #close 값만 배열에 따로 저장
+  close = [] #close 값만 배열에 따로 저장
   conn = dbconnect()
   cur = conn.cursor()
   # 모든 테이블에 코스피나 코스닥이 포함된 테이블명을 조회하여 [newTable]에 저장
@@ -133,16 +133,16 @@ def close_list(market):
   while i<len(lastClose):
     if lastClose[i] == None:
       print(i)
-      closeArr.append(0)
+      close.append(0)
       print(lastClose[i])
     else:
           newClose = lastClose[i].values()
           for key in newClose:
-            closeArr.append(key)
+            close.append(key)
     i+=1     
 
   for x in range(len(lastClose)):
-    closeList.append({'name':TableName[x],'close': closeArr[x]})
+    closeList.append({'name':TableName[x],'close': close[x]})
 
     new = sorted(closeList, key=lambda x: x['close'],reverse=True)
     newArray= new[0:10]
