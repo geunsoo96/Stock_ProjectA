@@ -2,7 +2,6 @@ import styled from "styled-components";
 import theme from "@/Theme/theme";
 import { useNavigate } from "react-router-dom";
 import KospiItem from "./KospiItem";
-import axios from "axios";
 import { useEffect, useState } from "react";
 const AlgorithmParent = styled.div`
   /* 알고리즘 추천주 페이지 전체 설정 */
