@@ -116,27 +116,19 @@ function Top() {
   }
 
   useEffect(()=>{
-    const getSamsungD = async () => {
-      try {
-        let response = await axios.get("http://127.0.0.1:5000/samsungPrice_d")
-        setSamsungD(response.data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getSamsungD()
+    fetch("http://127.0.0.1:5000/samsungPrice_d")
+    .then((res)=>res.json())
+    .then((res:any)=>{
+      setSamsungD(res)
+    })
   },[])
 
   useEffect(()=>{
-    const getSamsungM = async () => {
-      try {
-        let response = await axios.get("http://127.0.0.1:5000/samsungPrice_m")
-        setSamsungM(response.data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getSamsungM()
+    fetch("http://127.0.0.1:5000/samsungPrice_m")
+    .then((res)=>res.json())
+    .then((res:any)=>{
+      setSamsungM(res)
+    })
   },[])
 
   useEffect(()=>{
