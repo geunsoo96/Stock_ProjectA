@@ -55,8 +55,8 @@ def samsungPrice_dayAll():
   data = samsung_price_dayAll()
   return data
 
-@app.route("/kospi_close/<market>")
-def kospi(market):
+@app.route("/close_list/<market>")
+def close(market):
   data = close_list(market)
   return data 
 
