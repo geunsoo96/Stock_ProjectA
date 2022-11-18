@@ -130,7 +130,7 @@ def volume_list():
     lastClose.append(cur.fetchone())
     TableName.append(table['TABLE_NAME'])
     index = index+1
-  conn.close()
+  
   
   i = 0; 
   while i<len(lastClose):
@@ -146,7 +146,22 @@ def volume_list():
 
   for x in range(len(lastClose)):
     volumeArr.append({'name':TableName[x],'close': closeArr[x]})
-  return volumeArr
+
+    new = sorted(volumeArr, key=lambda x: x['close'],reverse=True)
+    newArray= new[0:10]
+
+  for item in newArray:
+    name = item['name']
+    find = name.split('_')
+    sql = f'SELECT name FROM `stock586`.`companyList` WHERE code = {find[1]}'
+    cur.execute(sql)
+    data = cur.fetchone()
+    item["company_name"] = data["name"]
+    item["code"] = find[1]
+    
+
+  conn.close()
+  return newArray
 
 def all_company_rank(market,day,column):
   conn = dbconnect()
