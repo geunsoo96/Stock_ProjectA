@@ -1,7 +1,7 @@
-import { dummyData } from "@/Layout/Sidebar"
 import theme from "@/Theme/theme"
 import styled from "styled-components"
 import { newsdata } from "./News"
+import { useRef } from 'react'
 
 const NewsBoxStyle = styled.div`
   width: inherit;
@@ -16,13 +16,13 @@ const NewsBoxStyle = styled.div`
     justify-content: space-around;
     /* color: white; */
     /* background-color: cadetblue; */
-    &:hover{
-    cursor: pointer;
-    }
     & > div:nth-child(1){
       width: inherit;
       /* background-color: blue; */
       font-size: 2.5rem;
+      &:hover{
+        cursor: pointer;
+      }
 
     }
     & > div:nth-child(2){
@@ -46,10 +46,23 @@ const NewsBoxStyle = styled.div`
 
 
 function NewsBox({value} : {value:newsdata}) {
+  const printRef = useRef()
+  const newsData = () => {
+    let printContent = printRef.current;
+    let windowObj = window.open(
+      '',
+      'Print',
+    );
+    windowObj?.document.writeln(value.news);
+    // windowObj?.document.close();
+    // windowObj?.focus();
+    // windowObj?.print();
+    // windowObj?.close();
+  }
   return (
     <NewsBoxStyle>
       <div>
-        <div>{value.title}</div>
+        <div onClick={newsData}>{value.title}</div>
         <div>{value.sumar}</div>
         <div>{value.date}</div>
       </div>
