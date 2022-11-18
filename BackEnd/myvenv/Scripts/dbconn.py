@@ -25,8 +25,7 @@ def company_name():
   cur.execute(sql)
   results = cur.fetchone()
   conn.close()
-  print(results['name'])
-  return results['name']
+  return results
 
 def samsung_data():
   conn = dbconnect()
