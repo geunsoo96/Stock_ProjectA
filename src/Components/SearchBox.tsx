@@ -37,8 +37,7 @@ const Div = styled.div`
       cursor: pointer;
     }
   }
-`
-
+  `
 const SearchBox = () => {
   const [search,setSearch] = useState("");
   const [clicked,setClicked] = useState(false);
@@ -56,7 +55,6 @@ const SearchBox = () => {
     setSearch(e.target.value);
     setClicked(true);
   }
-
   const outFocus = () => {
     setTimeout(() => {
       setClicked(false);
@@ -66,9 +64,7 @@ const SearchBox = () => {
   const filter = searchData.filter((p:any)=>{
     return p.name.replace(" ","").toLocaleLowerCase().includes(search.replace(" ","").toLocaleLowerCase())
   })
-
   const filter10 = filter.slice(0,10)
-
   if(filter.length === 0){
     return (
       <Search>
@@ -102,5 +98,11 @@ const SearchBox = () => {
     );
   }
 };
-
 export default SearchBox;
+
+
+
+
+
+
+
