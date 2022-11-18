@@ -38,7 +38,7 @@ const DetailCanvas = ({ data }: { data : any }) => (
         enableGridX={true}
         colors={{ scheme: 'spectral' }}
         lineWidth={1}
-        pointSize={4}
+        pointSize={1}
         pointColor={{ theme: 'background' }}
         pointBorderWidth={1}
         pointBorderColor={{ from: 'serieColor' }}

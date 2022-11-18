@@ -24,7 +24,7 @@ const Side = styled.div`
   justify-content:space-around;
   align-items:center;
   &>input{
-    width:100px;
+    width:80px;
     height:50px;
     font-size:2em;
     font-family: SCD-5;
@@ -101,7 +101,7 @@ const Detail = () => {
       setNameData(res)
     })
   },[])
-  const week = () => {
+  const button = (number:number) => {
     fetch(`http://127.0.0.1:5000/code/${code}`)
     .then((res)=>res.json())
     .then((res:any)=>{
@@ -113,29 +113,7 @@ const Detail = () => {
           "y": item.close
         }
       })
-      data.graph = graph.slice(0,5)
-      let max = Math.max(...close);
-      let min = Math.min(...close);
-      let minus = max - min;
-      data.max = max+(minus*0.1);
-      data.min = min-(minus*0.1);
-      data.minus = data.max - data.min;
-      setGraphData(data);
-    })
-  }
-  const month = () => {
-    fetch(`http://127.0.0.1:5000/code/${code}`)
-    .then((res)=>res.json())
-    .then((res:any)=>{
-      const close:number[] = [];
-      const graph = res.map((item:any)=>{
-        close.push(item.close)
-        return {
-          "x": time_format(item.day),
-          "y": item.close
-        }
-      })
-      data.graph = graph
+      data.graph = graph.slice(0,number)
       let max = Math.max(...close);
       let min = Math.min(...close);
       let minus = max - min;
@@ -156,8 +134,9 @@ const Detail = () => {
       <DetailCanvas data={graphData}></DetailCanvas>
       <Side>
         <div>
-          <input type="button" value={'1주일'} onClick={week}/>
-          <input type="button" value={'1개월'} onClick={month}/>
+          <input type="button" value={'1주일'} onClick={()=>button(6)}/>
+          <input type="button" value={'1개월'} onClick={()=>button(21)}/>
+          <input type="button" value={'1년'} onClick={()=>button(250)}/>
         </div>
         <div>
           <DetailData data={detailData}></DetailData>
