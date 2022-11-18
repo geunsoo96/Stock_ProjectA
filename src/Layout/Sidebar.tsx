@@ -2,6 +2,7 @@ import StockItem from '@/Components/StockItem';
 import theme from '@/Theme/theme';
 import styled from 'styled-components';
 import React, { useState, useEffect, SetStateAction } from "react"
+import LoadingPage from '@/Pages/Loading/LoadingPage';
 
 const SidebarBox = styled.div`
   width: 350px;
@@ -46,16 +47,8 @@ export interface rankData {
   }
 
 const Sidebar = () => {
-  const dummyData = [
-    {
-      "DB": "kospi_252670_m",
-      "close": 2530,
-      "name": "KODEX 200선물인버스2X",
-      "value": 212304098,
-      "code": 124000
-    }
-  ];
-  const [rankData,setRankData] = useState(dummyData)
+  const [rankData,setRankData] = useState()
+  const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
     fetch("http://127.0.0.1:5000/rank/kospi/m/volume")
@@ -63,21 +56,28 @@ const Sidebar = () => {
     .then((res:any)=>{
       setRankData(res)
       console.log(res)
+      setLoading(false)
     })
   },[])
 
-  return (
-    <>
+  if(loading){
+    return (<LoadingPage></LoadingPage>)
+  }
+
+  if(!loading){
+    return (
+      <>
       <SidebarBox>
         <div>거래량 TOP 10</div>
         <StockBox>
-          {rankData.map((value, index) => {
+          {rankData.map((value:any, index:any) => {
             return <StockItem key={index} data={value}></StockItem>;
           })}
         </StockBox>
       </SidebarBox>
-    </>
-  );
+      </>
+    );
+  }
 };
 
 export default Sidebar;

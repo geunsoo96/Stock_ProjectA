@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { useState } from "react";
-import { useNavigate, Link } from 'react-router-dom';
 import theme from "@/Theme/theme";
-
+import React, { useState, useEffect, SetStateAction } from "react"
+import { Link } from "react-router-dom";
 const Search = styled.div`
   width: 400px;
   height: 80px;
@@ -37,77 +36,32 @@ const Div = styled.div`
       cursor: pointer;
     }
   }
-`
-
+  `
 const SearchBox = () => {
-  const arr = [
-    {
-    "code": "000810",
-    "name": "삼성화재"
-    },
-    {
-    "code": "000815",
-    "name": "삼성화재우"
-    },
-    {
-    "code": "001360",
-    "name": "삼성제약"
-    },
-    {
-    "code": "005930",
-    "name": "삼성전자"
-    },
-    {
-    "code": "005935",
-    "name": "삼성전자우"
-    },
-    {
-    "code": "006400",
-    "name": "삼성SDI"
-    },
-    {
-    "code": "006405",
-    "name": "삼성SDI우"
-    },
-    {
-    "code": "006660",
-    "name": "삼성공조"
-    },
-    {
-    "code": "009150",
-    "name": "삼성전기"
-    },
-    {
-    "code": "009155",
-    "name": "삼성전기우"
-    },
-    {
-    "code": "010140",
-    "name": "삼성중공업"
-    },
-    {
-    "code": "010145",
-    "name": "삼성중공우"
-    }
-    ]
-
   const [search,setSearch] = useState("");
   const [clicked,setClicked] = useState(false);
+  const arr : any = [];
+  const [searchData,setSearchData] = useState(arr);
+  useEffect(()=>{
+    fetch(`http://127.0.0.1:5000/allName`)
+    .then((res)=>res.json())
+    .then((res:any)=>{
+      setSearchData(res);
+    })
+  },[])
   const onChange = (e:any) => {
     setSearch(e.target.value);
     setClicked(true);
   }
-
   const outFocus = () => {
     setTimeout(() => {
       setClicked(false);
     }, 200);
   }
-
-  const filter = arr.filter((p)=>{
+  const filter = searchData.filter((p : any)=>{
     return p.name.replace(" ","").toLocaleLowerCase().includes(search.replace(" ","").toLocaleLowerCase())
   })
-
+  const filter10 = filter.slice(0,10)
   if(filter.length === 0){
     return (
       <Search>
@@ -128,10 +82,10 @@ const SearchBox = () => {
         <Input placeholder="통합검색" type='text' onChange={onChange} onClick={onChange}/>
         {clicked &&
         <Div>
-          {filter.map((item) =>
-            <a key={item.code}href={`/Detail/${item.code}`}>
+          {filter10.map((item:any) =>
+            <Link key={item.code} to={`/Detail/${item.code}`}>
               <div onClick={outFocus}>{item.name}</div>
-            </a>
+            </Link>
             )
           }
         </Div>
@@ -141,5 +95,11 @@ const SearchBox = () => {
     );
   }
 };
-
 export default SearchBox;
+
+
+
+
+
+
+

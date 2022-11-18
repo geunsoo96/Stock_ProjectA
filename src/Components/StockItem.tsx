@@ -27,7 +27,7 @@ const ItemBox = styled.div`
 const StockItem = ({ data }: { data: rankData }) => {
   return (
     <>
-      <a href={`/Detail/${data.code}`}>
+      <Link to={`/Detail/${data.code}`}>
         <ItemBox>
           <div>{data.name}</div>
           <div>
@@ -35,7 +35,7 @@ const StockItem = ({ data }: { data: rankData }) => {
             <div>종가 {data.close.toLocaleString()}원</div>
           </div>
         </ItemBox>
-      </a>
+      </Link>
     </>
   );
 };

@@ -46,7 +46,7 @@ const DetailData = ({data}: { data : any }) => {
     color = 'red'
     text = '▲'
   }
-  console.log(color)
+  // console.log(color)
   return(
     <>
       <Div>
