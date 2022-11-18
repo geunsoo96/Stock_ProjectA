@@ -119,18 +119,19 @@ def volume_list(market):
   closeArr = [] #close 값만 배열에 따로 저장
   conn = dbconnect()
   cur = conn.cursor()
+  # 모든 테이블에 코스피나 코스닥이 포함된 테이블명을 조회하여 [newTable]에 저장
   sql ='SELECT TABLE_NAME FROM information_schema.tables WHERE TABLE_NAME LIKE "%'+market+'%m"';
   cur.execute(sql)
   newTable = cur.fetchall()
 
   index = 0
   for table in newTable:
+    #[newTable]에 저장된 테이블 명으로 루프돌려서 해당 close값이 가장 큰 값을 조회하여 lastClose에 저장
     sql2 = "SELECT close FROM "+table['TABLE_NAME']+" ORDER BY day DESC LIMIT 1"
     cur.execute(sql2)
     lastClose.append(cur.fetchone())
     TableName.append(table['TABLE_NAME'])
     index = index+1
-  
   
   i = 0; 
   while i<len(lastClose):

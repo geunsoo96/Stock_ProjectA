@@ -63,57 +63,9 @@ const AlgorithmButton = styled.button`
   }
 `;
 const Algorithm = () => {
-  const dummyKospi = [
-    {
-      id: "삼성전자",
-      price: 65000
-    },
-    {
-      id: "SK하이닉스",
-      price: 123000
-    },  
-    {
-      id: "네이버",
-      price: 110000
-    },  
-    {
-      id: "카카오",
-      price: 54000
-    },    
-    {
-      id: "DB하이텍",
-      price: 13000
-    },    
-    {
-      id: "카카오뱅크",
-      price: 32000
-    },    
-    {
-      id: "카카오페이",
-      price: 8000
-    },    
-    {
-      id: "삼성중공업",
-      price: 2300
-    },    
-    {
-      id: "삼성화재",
-      price: 17000
-    },    
-    {
-      id: "현대차",
-      price: 360000
-    }
-  ]
 
   const navigate = useNavigate();
 
-  // // axios.get("http://127.0.0.1:5000/volume")
-  // // .then((res)=>{
-  // //   console.log(res)
-  // // }).catch((err)=>{
-  // //   console.log(err)
-  // // })
   const [kospi,setKospi] = useState([]);
   const [kosdak,setKosdak] = useState([]);
   useEffect(()=>{
