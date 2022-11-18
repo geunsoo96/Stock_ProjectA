@@ -55,6 +55,15 @@ def samsungPrice_dayAll():
   data = samsung_price_dayAll()
   return data
 
+@app.route("/volume")
+def volume():
+  data = volume_list()
+  return data 
+
+@app.route('/kospi_priceList/<market>')
+def kospi_priceList(market):
+  data = kospi_company_price(market)
+  
 @app.route('/rank/<market>/<day>/<column>')
 def rank(market,day,column):
   data = all_company_rank(market,day,column)
@@ -62,3 +71,4 @@ def rank(market,day,column):
 
 if __name__ == '__main__':
   app.run(debug=True)
+

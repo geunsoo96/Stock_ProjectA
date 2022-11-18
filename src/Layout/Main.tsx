@@ -14,11 +14,15 @@ const MainBox = styled.div`
   justify-content: center;
   gap: 100px;
   display: flex;
+  background-color: rgba( 255, 255, 255, 5 );
   `;
 
 const MainItem = styled.div`
   width: 1300px;
   height: 700px;
+  background-image: url("/img/생각하는 검은대표님.jpeg");
+
+  background-size: cover;
 `;
 
 const Main = () => {

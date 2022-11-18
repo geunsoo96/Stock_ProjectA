@@ -27,7 +27,7 @@ const LottoParent = styled.div`
   }
   & > div:nth-child(4) {
     /* 추천종목 나오는 박스 */
-    width: 500px;
+    width: 800px;
     height: 100px;
     border: 3px solid ${theme.mainCol};
     display: flex;
@@ -55,6 +55,7 @@ const Lotto = () => {
   const [shake, setShake] = useState(false);
   const [lotto,setLotto] = useState(null);
   const [data, setData] = useState("");
+  const [img, setImg] = useState("/img/image.png");
     const getData = async () => {
       try {
         let response = await axios.get("http://127.0.0.1:5000/randomName")
@@ -72,6 +73,10 @@ const Lotto = () => {
     setShake((current) => !current);
     setTimeout(() => {
       getData();
+      setTimeout(()=>{
+        setImg("/img/image.png")
+      },500)
+      setImg("/img/절규하는 대표님.jpg")
       setShake(false);
     }, 3000);
     }else{
@@ -88,7 +93,7 @@ const Lotto = () => {
     transform: rotate(360deg);
     transition: 10s; */}
       <img
-        src="/img/image.png"
+        src= {img}
         style={{
           transform: shake ? "rotate(360deg)" : "",
           transition: shake ? "3s" : "",

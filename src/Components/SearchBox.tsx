@@ -37,7 +37,7 @@ const Div = styled.div`
       cursor: pointer;
     }
   }
-  `
+`
 
 const SearchBox = () => {
   const [search,setSearch] = useState("");
@@ -63,7 +63,7 @@ const SearchBox = () => {
     }, 200);
   }
 
-  const filter = searchData.filter((p : any)=>{
+  const filter = searchData.filter((p:any)=>{
     return p.name.replace(" ","").toLocaleLowerCase().includes(search.replace(" ","").toLocaleLowerCase())
   })
 
