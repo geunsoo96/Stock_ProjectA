@@ -8,7 +8,7 @@ const SidebarBox = styled.div`
   width: 350px;
   height: 700px;
   border-radius: 20px;
-  border: 5px solid ${theme.mainCol};
+  border: 2px solid ${theme.mainCol};
   display: flex;
   flex-direction: column;
   justify-content: center;

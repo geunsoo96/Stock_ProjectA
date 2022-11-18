@@ -82,7 +82,6 @@ const ItemBox = styled.div`
 const TopBottomBox = styled.div`
   width: inherit;
   height: 14%;
-  border-radius: 10px;
   background-color: ${theme.mainCol};
   display: flex;
   align-items: center;
