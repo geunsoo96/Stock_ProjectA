@@ -6,11 +6,11 @@ import { useNavigate, Link } from 'react-router-dom';
 const ItemBox = styled.div`
   width: 100%;
   height: 100%;
-  background-color: ${theme.mainCol};
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
+  font-family: SCD-5;
   &>div{
     width: 100%;
     height: 100%;
@@ -20,7 +20,7 @@ const ItemBox = styled.div`
     justify-content: center;
     border-radius: 10px;
     &:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
       cursor: pointer;
       transition: 0.3s;
     }
@@ -29,6 +29,7 @@ const ItemBox = styled.div`
     }
     &>div:nth-child(2){
       width:40%;
+      font-size:16px;
     }
   }
 `;
@@ -41,8 +42,8 @@ const StockItem = ({ data }: { data: rankData }) => {
           <div>
             <div>{data.name}</div>
             <div>
-              <div>거래량 {data.value.toLocaleString()}</div>
-              <div>종가 {data.close.toLocaleString()}원</div>
+              <p>거래량 {data.value.toLocaleString()}</p>
+              <p>종가 {data.close.toLocaleString()}원</p>
             </div>
           </div>
         </ItemBox>
