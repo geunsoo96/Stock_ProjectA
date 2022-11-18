@@ -109,7 +109,7 @@ def kospi_company_price(market):
 
 
 def close_list(market):
-  volumeArr=[] #최종배열
+  closeList=[] #최종배열
   TableName = [] #조회할 전체 테이블명 담는 배열
   lastClose = [] #제일 최근날짜 close값을 조회하여 객체로 저장
   closeArr = [] #close 값만 배열에 따로 저장
@@ -142,9 +142,9 @@ def close_list(market):
     i+=1     
 
   for x in range(len(lastClose)):
-    volumeArr.append({'name':TableName[x],'close': closeArr[x]})
+    closeList.append({'name':TableName[x],'close': closeArr[x]})
 
-    new = sorted(volumeArr, key=lambda x: x['close'],reverse=True)
+    new = sorted(closeList, key=lambda x: x['close'],reverse=True)
     newArray= new[0:10]
 
   for item in newArray:
