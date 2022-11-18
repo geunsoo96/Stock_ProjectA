@@ -107,12 +107,8 @@ def kospi_company_price(market):
   return results2
 
 
-  # sql = 'select code FROM `stock586`.`companyList`'
 
-
-  'SELECT TABLE_NAME FROM information_schema.tables'
-
-def volume_list(market):
+def close_list(market):
   volumeArr=[] #최종배열
   TableName = [] #조회할 전체 테이블명 담는 배열
   lastClose = [] #제일 최근날짜 close값을 조회하여 객체로 저장
