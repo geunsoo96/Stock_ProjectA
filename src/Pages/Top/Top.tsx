@@ -24,7 +24,7 @@ const TopBox = styled.div`
   }
   & > hr {
     height: 3px;
-    background-color: ${theme.mainCol};
+    background-color: #ccc;
     border: 0px;
   }
 `;

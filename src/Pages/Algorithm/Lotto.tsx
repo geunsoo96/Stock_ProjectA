@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import theme from "@/Theme/theme";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useState, useRef, useEffect } from "react";
 
-
-import { current } from "@reduxjs/toolkit";
+// import { current } from "@reduxjs/toolkit";
 const LottoParent = styled.div`
   width: inherit;
   height: 700px;
@@ -29,10 +27,11 @@ const LottoParent = styled.div`
     /* 추천종목 나오는 박스 */
     width: 800px;
     height: 100px;
+    background-color: white;
     border: 3px solid ${theme.mainCol};
     display: flex;
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
   }
 `;
 // 
