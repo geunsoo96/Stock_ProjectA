@@ -3,6 +3,7 @@ import theme from "@/Theme/theme";
 import { useNavigate } from "react-router-dom";
 import KospiItem from "./KospiItem";
 import { useEffect, useState } from "react";
+import LoadingPage from "../Loading/LoadingPage";
 const AlgorithmParent = styled.div`
   /* 알고리즘 추천주 페이지 전체 설정 */
   width: inherit;
@@ -67,24 +68,27 @@ const Algorithm = () => {
 
   const [kospi,setKospi] = useState([]);
   const [kosdak,setKosdak] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(()=>{
+    setLoading(true);
     fetch("http://127.0.0.1:5000/close_list/kospi")
     .then((res)=>res.json())
     .then((res:any)=>{
       setKospi(res);
       console.log(res)
+      setLoading(false);
     });
-    
     fetch("http://127.0.0.1:5000/close_list/kosdak")
     .then((res)=>res.json())
     .then((res:any)=>{
       setKosdak(res);
       console.log(res)
+      setLoading(false);
     });
-    
-
   },[])
-  
+  if (loading) {
+    return (<LoadingPage></LoadingPage>)
+  }
   return (
     <AlgorithmParent>
       <h1>이달의 추천주식</h1>
