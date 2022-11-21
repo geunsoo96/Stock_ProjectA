@@ -58,13 +58,17 @@ export interface newsdata {
 }
 
 function News() {
-  const [newsData, setNewsData] = useState<any>([])
+  //button 목록 수
+  const newsLimit = 500
+  // 한 페이지에 보이는 news 목록 수
+  const pageNewsLimit = 5
+  // newsLimit * pageNewsLimit = 기사 총 개수
+  // new 개수를 늘릴려면 newsLimit만  늘릴 것.
 
+  const [newsData, setNewsData] = useState<any>([])
   const [listNum, setListNum] = useState(5)
   const [click, setClick] = useState(false)
   const [loading, setLoading] = useState(false)
-
-
   const [buttonState, setButtonState] = useState(1)
 
   let Number: any[] = []
@@ -85,16 +89,16 @@ function News() {
   }, [listNum])
 
   useEffect(() => {
-    console.log(buttonState) // 이걸로 api 불러오기
+    console.log(buttonState) // 버튼 상태가 변환될 때마다 api 불러오기
   }, [buttonState])
 
   useEffect(() => {
     setLoading(true)
     const getData = async () => {
-      await axios.get(`https://apis.data.go.kr/B410001/ovseaMrktNewsService/ovseaMrktNews?serviceKey=uTVcynnfHvQE%2FYUDpYxd5H2oDt89Vg9pvZsbT%2Bd5fwvJSMHp7f2m7IAF4kIJDJF51jLa2xE3m8lpZG2aI3Cy4A%3D%3D&type=json&numOfRows=4&pageNo=${buttonState}`)
+      await axios.get(`https://apis.data.go.kr/B410001/ovseaMrktNewsService/ovseaMrktNews?serviceKey=uTVcynnfHvQE%2FYUDpYxd5H2oDt89Vg9pvZsbT%2Bd5fwvJSMHp7f2m7IAF4kIJDJF51jLa2xE3m8lpZG2aI3Cy4A%3D%3D&type=json&numOfRows=${pageNewsLimit}&pageNo=${buttonState}`)
         .then(res => {
           let datavalue: any = []
-          for (let i = 0; i < 4; i++) {
+          for (let i = 0; i < pageNewsLimit-1; i++) {
 
             let data = res.data.items
             let title = data[i].newsTitl
@@ -121,13 +125,19 @@ function News() {
         <NewsContainer>
           <div>시장 동향 소식.</div>
           <hr />
+
+          {/* 뉴스 데이터 */}
           {newsData.map((value: any, index: any) => {
             return (
               <NewsBox key={index} value={value}></NewsBox>
             )
           })}
+
+          {/* 뉴스 목록 버튼 */}
           <ListButtonStyle>
             <div>
+
+              {/* << 버튼 */}
               <button onClick={() => {
                 setListNum(5); setClick(!click)
               }}>
@@ -135,6 +145,7 @@ function News() {
                   <path d="M6.01705 19.8864V18.75L15.1648 14.0909V15.9091L8.14773 19.2898L8.20455 19.1761V19.4602L8.14773 19.3466L15.1648 22.7273V24.5455L6.01705 19.8864ZM19.2006 19.8864V18.75L28.3484 14.0909V15.9091L21.3313 19.2898L21.3881 19.1761V19.4602L21.3313 19.3466L28.3484 22.7273V24.5455L19.2006 19.8864Z" fill="white" />
                 </svg>
               </button>
+              {/* < 버튼 */}
               <button onClick={() => {
                 if (listNum === 5) {
                 } else {
@@ -146,14 +157,18 @@ function News() {
                 </svg>
               </button>
 
+
+              {/* 한 페이지에 보이는 button 개수 */}
               {NumberMaker().map((value, index) => {
                 return (
                   <button key={index + 1} onClick={() => setButtonState(value + 1)}>{value + 1}</button>
                 )
               })}
 
+
+              {/* > 버튼 */}
               <button onClick={() => {
-                if (listNum === 500) {
+                if (listNum === newsLimit) {
                 } else {
                   setListNum(listNum + 5); setClick(!click)
                 }
@@ -162,8 +177,9 @@ function News() {
                   <path d="M9.16477 5.88636L0.0170455 10.5455V8.72727L7.03409 5.34659L6.97727 5.46023V5.17614L7.03409 5.28977L0.0170455 1.90909V0.0909088L9.16477 4.75V5.88636Z" fill="white" />
                 </svg>
               </button>
+              {/* >> 버튼 */}
               <button onClick={() => {
-                setListNum(500); setClick(!click)
+                setListNum(newsLimit); setClick(!click)
               }}>
                 <svg width="23" height="11" viewBox="0 0 23 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9.16477 5.88636L0.0170455 10.5455V8.72727L7.03409 5.34659L6.97727 5.46023V5.17614L7.03409 5.28977L0.0170455 1.90909V0.0909088L9.16477 4.75V5.88636ZM22.3484 5.88636L13.2006 10.5455V8.72727L20.2177 5.34659L20.1609 5.46023V5.17614L20.2177 5.28977L13.2006 1.90909V0.0909088L22.3484 4.75V5.88636Z" fill="white" />
