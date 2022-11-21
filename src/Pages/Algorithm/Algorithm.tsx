@@ -13,13 +13,13 @@ const AlgorithmParent = styled.div`
   align-items: center;
   & > h1 {
     /* 이달의 추천주식 */
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-family: YANGJIN;
     color: ${theme.lightBlack};
   }
 `;
 const StockBox = styled.div`
-  width: inherit;
+  width: 1200px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -30,7 +30,7 @@ const StockBox = styled.div`
     align-items: center;
     justify-content: space-around;
     & > h2 {
-      font-size: 2rem;
+      font-size: 3rem;
       font-family: SCD-5;
       color: #333;
     }
@@ -40,8 +40,8 @@ const StockList = styled.div`
   width: 300px;
   height: 500px;
   background-color: white;
-  border: 3px solid ${theme.mainCol};
-  border-radius: 20px;
+  border: 3px solid #ccc;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -50,7 +50,7 @@ const StockList = styled.div`
 const AlgorithmButton = styled.button`
   width: 300px;
   height: 50px;
-  border-radius: 20px;
+  border-radius: 10px;
   border: none;
   background-color: ${theme.mainCol};
   cursor: pointer;

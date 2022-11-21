@@ -39,7 +39,7 @@ const Side = styled.div`
   height:520px;
   display:flex;
   background-color: #fff;
-  border: 5px ${theme.mainCol} solid ;
+  border: 3px #ccc solid ;
   border-radius: 20px;
 }
 `

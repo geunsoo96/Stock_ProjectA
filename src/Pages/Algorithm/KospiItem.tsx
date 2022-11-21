@@ -2,15 +2,18 @@
 import styled from "styled-components";
 import theme from "@/Theme/theme";
 const ItemBox = styled.div`
-  width: 200px;
+  width: 300px;
   padding: 10px;
+  padding-left: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: ${theme.lightBlack};
-  font-size: 1.5rem;
-  font-family: SCD-5;
   gap:20px;
+  &>div{
+    font-family: SCD-5;
+    font-size: 1.1rem;
+  }
   &>div:nth-child(1){
     width: 120px;
   };

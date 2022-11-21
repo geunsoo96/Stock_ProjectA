@@ -15,6 +15,8 @@ const ItemBox = styled.div`
     width: 100%;
     height: 100%;
     background-color: ${theme.mainCol};
+    color: black;
+    font-family: SCD-7;
     display: flex;
     align-items: center;
     justify-content: center;

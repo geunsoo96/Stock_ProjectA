@@ -85,6 +85,7 @@ const TopBottomBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0px 0px 20px 20px ${theme.mainCol};
   & > div {
     display: flex;
     gap: 100px;
@@ -159,17 +160,24 @@ function Top() {
     { type: '상한가', value: samsungD[0].open*1.3 },
     { type: '하한가', value: samsungD[0].open*0.7 },
   ];
-
+  console.log(samsungAll.length)
+  const graphMap = (data:any) => {
+    for(let i = 0; i < data.length; i++){
+      return [{x:time_format(data[i].day),y:data[i].close}];
+    }
+  }
+  
   const graphData = {
-    graph:[
-      {x:time_format(samsungAll[0].day),y:samsungAll[0].close},
-      {x:time_format(samsungAll[1].day),y:samsungAll[1].close},
-      {x:time_format(samsungAll[2].day),y:samsungAll[2].close},
-      {x:time_format(samsungAll[3].day),y:samsungAll[3].close},
-      {x:time_format(samsungAll[4].day),y:samsungAll[4].close},
-      {x:time_format(samsungAll[5].day),y:samsungAll[5].close},
-      {x:time_format(samsungAll[6].day),y:samsungAll[6].close},
-    ],
+    // graph:[
+    //   {x:time_format(samsungAll[0].day),y:samsungAll[0].close},
+    //   {x:time_format(samsungAll[1].day),y:samsungAll[1].close},
+    //   {x:time_format(samsungAll[2].day),y:samsungAll[2].close},
+    //   {x:time_format(samsungAll[3].day),y:samsungAll[3].close},
+    //   {x:time_format(samsungAll[4].day),y:samsungAll[4].close},
+    //   {x:time_format(samsungAll[5].day),y:samsungAll[5].close},
+    //   {x:time_format(samsungAll[6].day),y:samsungAll[6].close},
+    // ],
+    graph: graphMap(samsungAll),
     max:80000,
     min:60000,
     minus:20000

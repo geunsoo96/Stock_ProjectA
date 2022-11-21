@@ -6,13 +6,14 @@ import SearchBox from '@/Components/SearchBox';
 
 const HeaderBox = styled.div`
   width: 1920px;
-  height: 150px;
+  height: 15%;
   display: flex;
   justify-content:space-evenly;
   align-items: center;
   flex-direction: row;
-  background-color: ${theme.mainCol};
-  color: white;
+  background: linear-gradient(50deg, violet, orange);
+  color: ${theme.lightBlack};
+  border-bottom: 2px solid white;
 
   & > ul {
     &:hover {
@@ -44,27 +45,25 @@ const HeaderBox = styled.div`
       font-size: 3rem;
       font-family: 'YANGJIN';
       align-self: flex-end;
-      position: relative;
-      top: 8px;
     }
   }
 
   & > a {
     & > {
       div {
-        font-size: 2rem;
+        font-size: 2.5rem;
         font-weight: bold;
-        font-family: SCD-3;
+        font-family: SCD-5;
         width: 200px;
         height: 80px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: gray;
+        color: ${theme.lightBlack};
         border-radius: 20px;
 
         &:hover {
-          color: black;
+          color: white;
           cursor: pointer;
         }
       }
@@ -84,7 +83,7 @@ const Header = () => {
     <>
       <HeaderBox>
         <div>
-        <SearchBox></SearchBox>
+          <SearchBox></SearchBox>
         </div>
         <Link to={'/algorithm'}>
           <div>추천 알고리즘</div>
@@ -97,7 +96,7 @@ const Header = () => {
             navigate('/');
           }}
         >
-          <img src="/img/logo.png" alt="이미지 없음" />
+          <img src="/img/팀로고.png" alt="이미지 없음" />
           <div>
             우가우가<br></br> 투자증권
           </div>

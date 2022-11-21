@@ -4,7 +4,7 @@ import theme from "@/Theme/theme";
 const DetailHeaderBox = styled.div`
   width:inherit;
   height:80px;
-  border-bottom:5px ${theme.mainCol} solid;
+  border-bottom:3px #ccc solid;
   display:flex;
   align-items:flex-end;
   &>h1{

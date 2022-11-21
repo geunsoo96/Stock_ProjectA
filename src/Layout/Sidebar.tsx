@@ -6,16 +6,18 @@ import LoadingPageSide from '@/Pages/Loading/LoadingPageSide';
 
 const SidebarBox = styled.div`
   width: 350px;
-  height: 700px;
+  height: 800px;
   border-radius: 20px;
-  border: 2px solid ${theme.mainCol};
+  border: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.3);
+  position: relative;
+  bottom: 50px;
   & > div {
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-family: SCD-7;
   }
 `;

@@ -7,21 +7,21 @@ const TotalBox = styled.div`
 `;
 
 const MainBox = styled.div`
-  margin-top: 40px;
+  padding-top: 60px;
   width: 1920px;
-  height: 750px;
-  align-items: center;
+  height: 85%;
+  align-items: flex-start;
   justify-content: center;
   gap: 100px;
   display: flex;
-  background-color: rgba( 255, 255, 255, 5 );
+  /* background-image: url("/img/background.png"); */
   `;
 
 const MainItem = styled.div`
   width: 1300px;
   height: 700px;
-  background-image: url("/img/생각하는 검은대표님.jpeg");
-
+  background-image: url("/img/생각하는 검은대표님 예제.jpeg");
+  box-shadow: 0px 0px 25px 30px white;
   background-size: cover;
 `;
 
