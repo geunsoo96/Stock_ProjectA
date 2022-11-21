@@ -47,6 +47,9 @@ const NewsBoxStyle = styled.div`
 
 function NewsBox({value} : {value:newsdata}) {
   const printRef = useRef()
+  // 새 탭으로 기사 열기
+  // 본래 기사 페이지는 삭제 되었기 때문에
+  // api 안에 있는 기사 body를 가지고 열기
   const newsData = () => {
     let printContent = printRef.current;
     let windowObj = window.open(
@@ -54,10 +57,6 @@ function NewsBox({value} : {value:newsdata}) {
       'Print',
     );
     windowObj?.document.writeln(value.news);
-    // windowObj?.document.close();
-    // windowObj?.focus();
-    // windowObj?.print();
-    // windowObj?.close();
   }
   return (
     <NewsBoxStyle>
