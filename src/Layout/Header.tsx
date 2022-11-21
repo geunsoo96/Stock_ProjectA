@@ -11,7 +11,7 @@ const HeaderBox = styled.div`
   justify-content:space-evenly;
   align-items: center;
   flex-direction: row;
-  background: linear-gradient(50deg, violet, orange);
+  background: linear-gradient(150deg, #eb72eb, orange);
   color: ${theme.lightBlack};
   border-bottom: 2px solid white;
 
