@@ -1,42 +1,66 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import React,{useEffect, useRef, useState} from "react"
+
+//?flex 인터페이스
+interface flex{
+  direction:string,
+  justify:string,
+  align:string,
+}
+//?애니메이션 인터페이스
+interface animation{ duration:string, delay:string, }
+
+//?사이즈 인터페이스
+interface size{ width:string, height:string }
+
+//!애니메이션  함수
+export const animation = (animation:animation) =>css`
+  animation-duration:${animation.duration};
+  animation-delay:${animation.delay};
+`
+//!플렉스 함수
+export const flexCenter = (flex:flex) => css`
+  display:flex;
+  flex-direction:${flex.direction};
+  justify-content:${flex.justify};
+  align-items:${flex.align};
+`
+//!사이즈 함수
+export const size = (size:size) => css`
+  width:${size.width};
+  height:${size.height};
+`
+
 const Main = styled.div`
-  width:100%;
-  height:100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${size({width:"100%",height:"100%"})}
+  ${flexCenter({direction:"row",justify:"center",align:"center"})}
 `
-const Center = styled.div`
-  width:300px;
-  height:300px;
-  background-image: url("/img/prog.png");
-  background-repeat: no-repeat;
-  background-position: 50%;
-  background-size: 100%;
-  
-`
+
 const Container = styled.div`
-  display: flex;
+  ${flexCenter({direction:"row",justify:"center",align:"center"})}
+  ${size({width:"700px",height:"680px"})}
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width:700px;
-  height:680px;
   background-color: white;
   gap:30px;
   border-radius: 50%;
   box-shadow: 1px 1px 20px rgba(254,172,49,1);  
 `
 
+//중앙 이미지
+const Center = styled.div`
+  ${size({width:"300px",height:"300px"})}
+  background-image: url("/img/prog.png");
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 100%;
+`
+
 const Coin = styled.div`
-  
   border-radius: 50%;
   display:flex;
   position: relative;
   & > div {
-    width:70px;
-    height:70px;
+    ${size({width:"70px",height:"70px"})}
     border-radius: 50%;
     background-image: url("/img/coin.jpg");
     background-position: 50% 50%;
@@ -49,26 +73,13 @@ const Coin = styled.div`
     bottom: 0;
     opacity: 0;
   }
-  & > div:nth-child(1){
-    animation-duration:.6s;
-    animation-delay: .2s;
-  }
-  & > div:nth-child(2){
-    animation-duration:.6s;
-    animation-delay: .4s;
-  }
-  & > div:nth-child(3){
-    animation-duration:.6s;
-    animation-delay: .6s;
-  }
-  & > div:nth-child(4){
-    animation-duration:.6s;
-    animation-delay: .8s;
-  }
-  & > div:nth-child(5){
-    animation-duration:.6s;
-    animation-delay: 1s;
-  }
+  //div 하나씩 딜레이와 지속시간 지정
+  & > div:nth-child(1){ ${animation({duration:".6s",delay:".2s"})} }
+  & > div:nth-child(2){ ${animation({duration:".6s",delay:".4s"})} }
+  & > div:nth-child(3){ ${animation({duration:".6s",delay:".6s"})} }
+  & > div:nth-child(4){ ${animation({duration:".6s",delay:".8s"})} }
+  & > div:nth-child(5){ ${animation({duration:".6s",delay:"1s"})} }
+
   @keyframes top {
       0%{
         bottom:60px;
@@ -85,16 +96,14 @@ const Coin = styled.div`
 `
 
 const Text = styled.div`
-
-
   font-size: 40px;
   font-weight: bold;
   font-family: YANGJIN;
   animation-name: op;
   animation-direction: alternate;
   animation-iteration-count: infinite;
-  opacity: 1;
   animation-duration:.6s;
+  opacity: 1;
     @keyframes op {
       from{
         opacity: 0;
@@ -105,18 +114,15 @@ const Text = styled.div`
     }
   `
   const LoadingPage = () =>{
-    const mainRef = useRef<HTMLDivElement>(null);
 
   return(
     <Main>
       <Container>
-        {/* <canvas ref={canvasRef} style={{background:"white"}} width={1000} height={600} onClick={click}></canvas> */}
         <Coin>
           <div></div><div></div><div></div><div></div><div></div>
         </Coin>
         <Center/>
         <Text>LOADING...</Text>
-        
       </Container>
     </Main>
   )
