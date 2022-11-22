@@ -15,7 +15,13 @@ const DetailCanvas = ({ data }: { data : any }) => (
         // curve="monotoneX"
         axisTop={null}
         axisRight={{
-            tickValues: [ data.min, data.min+data.minus/4, data.min+data.minus*2/4, data.min+data.minus*3/4 ,data.max ],
+            tickValues: [
+                Math.floor(data.min),
+                Math.floor(data.min+data.minus/4),
+                Math.floor(data.min+data.minus*2/4),
+                Math.floor(data.min+data.minus*3/4),
+                Math.floor(data.max)
+            ],
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
@@ -29,7 +35,13 @@ const DetailCanvas = ({ data }: { data : any }) => (
             // legendPosition: 'middle'
         }}
         axisLeft={{
-            tickValues: [ data.min, data.min+data.minus/4, data.min+data.minus*2/4, data.min+data.minus*3/4 ,data.max ],
+            tickValues: [
+                Math.floor(data.min),
+                Math.floor(data.min+data.minus/4),
+                Math.floor(data.min+data.minus*2/4),
+                Math.floor(data.min+data.minus*3/4),
+                Math.floor(data.max)
+            ],
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
