@@ -33,6 +33,9 @@ const DetailCanvas = ({ data }: { data : any }) => (
             // legend: 'day',
             // legendOffset: 36,
             // legendPosition: 'middle'
+            tickSize: 5,
+            tickPadding: 10,
+            tickRotation: -35,
         }}
         axisLeft={{
             tickValues: [
@@ -56,7 +59,13 @@ const DetailCanvas = ({ data }: { data : any }) => (
         pointBorderColor={{ from: 'serieColor' }}
         pointLabelYOffset={-12}
         useMesh={true}
-        gridYValues={[ data.min, data.min+data.minus/4, data.min+data.minus*2/4, data.min+data.minus*3/4 ,data.max ]}
+        gridYValues={[
+            Math.floor(data.min),
+            Math.floor(data.min+data.minus/4),
+            Math.floor(data.min+data.minus*2/4),
+            Math.floor(data.min+data.minus*3/4),
+            Math.floor(data.max)
+        ]}
     />
 )
 

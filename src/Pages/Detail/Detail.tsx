@@ -139,7 +139,7 @@ const Detail = () => {
           <Side>
             <div>
               <input type="button" value={'1주일'} onClick={() => button(6)} />
-              <input type="button" value={'1개월'} onClick={() => button(21)} />
+              <input type="button" value={'1개월'} onClick={() => button(20)} />
               <input type="button" value={'1년'} onClick={() => button(250)} />
             </div>
             <div>
