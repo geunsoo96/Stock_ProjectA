@@ -18,6 +18,7 @@ const LottoParent = styled.div`
     font-size: 3rem;
     font-family: SCD-7;
     color: ${theme.lightBlack};
+    text-align: center;
   }
   & > div:nth-child(2) {
     font-size: 2rem;
@@ -98,6 +99,7 @@ const Lotto = () => {
       <img
         src={img}
         style={{
+          // 이미지 360도 돌아가는 에니메이션 효과
           transform: shake ? 'rotate(360deg)' : '',
           transition: shake ? '3s' : '',
         }}
@@ -106,7 +108,11 @@ const Lotto = () => {
         }}
         height={280}
       ></img>
-      <div>↑↑↑클릭↑↑↑</div>
+      <div>
+        ↑↑↑클릭↑↑↑
+        <br />
+        <span style={{ color: 'red', fontSize: '2rem' }}>투자의 책임은 본인에게 있습니다.</span>
+      </div>
       <div>침팬지의 추천종목</div>
       <div>{data}</div>
       <LottoButton
