@@ -38,7 +38,7 @@ const DetailBox = styled.div`
 const DetailData = ({data}: { data : any }) => {
   const percent = data.chai*100
   let color = 'black'
-  let text = ''
+  let text = '-'
   if(percent<0){
     color = 'blue'
     text = '▼'
@@ -46,7 +46,7 @@ const DetailData = ({data}: { data : any }) => {
     color = 'red'
     text = '▲'
   }
-  // console.log(color)
+  // 가져온 데이터(chai)의 값에 따라서 color와 text 변경.
   return(
     <>
       <Div>
