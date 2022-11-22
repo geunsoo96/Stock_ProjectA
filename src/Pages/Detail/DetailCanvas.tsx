@@ -23,10 +23,10 @@ const DetailCanvas = ({ data }: { data : any }) => (
             legendOffset: 0
         }}
         axisBottom={{
-            format: '%Y-%m-%d',
-            legend: 'day',
-            legendOffset: 36,
-            legendPosition: 'middle'
+            format: '%y-%m-%d',
+            // legend: 'day',
+            // legendOffset: 36,
+            // legendPosition: 'middle'
         }}
         axisLeft={{
             tickValues: [ data.min, data.min+data.minus/4, data.min+data.minus*2/4, data.min+data.minus*3/4 ,data.max ],

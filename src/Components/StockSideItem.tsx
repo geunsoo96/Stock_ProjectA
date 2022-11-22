@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import theme from '@/Theme/theme';
-import { rankData } from './../Layout/Sidebar';
-import { useNavigate, Link } from 'react-router-dom';
+import { rankData } from '../Layout/Sidebar';
+import { Link } from 'react-router-dom';
 
 const ItemBox = styled.div`
   width: 100%;
@@ -11,7 +11,7 @@ const ItemBox = styled.div`
   justify-content: center;
   border-radius: 10px;
   font-family: SCD-5;
-  &>div{
+  & > div {
     width: 100%;
     height: 100%;
     background-color: ${theme.mainCol};
@@ -26,17 +26,17 @@ const ItemBox = styled.div`
       cursor: pointer;
       transition: 0.3s;
     }
-    &>div:nth-child(1){
-      width:50%;
+    & > div:nth-child(1) {
+      width: 50%;
     }
-    &>div:nth-child(2){
-      width:40%;
-      font-size:16px;
+    & > div:nth-child(2) {
+      width: 40%;
+      font-size: 16px;
     }
   }
 `;
 
-const StockItem = ({ data }: { data: rankData }) => {
+const StockSideItem = ({ data }: { data: rankData }) => {
   return (
     <>
       <Link to={`/Detail/${data.code}`}>
@@ -54,4 +54,4 @@ const StockItem = ({ data }: { data: rankData }) => {
   );
 };
 
-export default StockItem;
+export default StockSideItem;
