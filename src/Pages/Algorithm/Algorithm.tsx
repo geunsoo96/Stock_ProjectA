@@ -75,14 +75,14 @@ const Algorithm = () => {
     .then((res)=>res.json())
     .then((res:any)=>{
       setKospi(res);
-      console.log(res)
+      // console.log(res)
       setLoading(false);
     });
     fetch("http://127.0.0.1:5000/close_list/kosdak")
     .then((res)=>res.json())
     .then((res:any)=>{
       setKosdak(res);
-      console.log(res)
+      // console.log(res)
       setLoading(false);
     });
   },[])
