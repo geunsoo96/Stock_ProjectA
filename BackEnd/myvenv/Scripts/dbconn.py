@@ -137,6 +137,7 @@ def close_list(market):
     index = index+1
   
   i = 0; 
+  # 테이블별로 가장 큰 close 값을 close 변수에 따로 저장함.
   while i<len(lastClose):
     if lastClose[i] == None:
       print(i)
@@ -148,12 +149,15 @@ def close_list(market):
             close.append(key)
     i+=1     
 
+  #[closeList]에 테이블명과 close 값을 매칭하여 객체로 저장
   for x in range(len(lastClose)):
     closeList.append({'name':TableName[x],'close': close[x]})
 
+    #closeList의 close값이 가장 큰 순서대로 10개만 저장
     new = sorted(closeList, key=lambda x: x['close'],reverse=True)
     newArray= new[0:10]
 
+  #최종 10개의 close 값을 저장한 배열의 company name을 매칭하여 객체에 추가함
   for item in newArray:
     name = item['name']
     find = name.split('_')
@@ -162,9 +166,10 @@ def close_list(market):
     data = cur.fetchone()
     item["company_name"] = data["name"]
     item["code"] = find[1]
-    
 
   conn.close()
+  
+  #최종 저장된 배열을 리턴
   return newArray
 
 def all_company_rank(market,day,column):
