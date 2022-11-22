@@ -1,47 +1,46 @@
 import styled from 'styled-components';
-import theme from "@/Theme/theme";
 import DetailData from './DetailData';
 import DetailHeader from './DetailHeader';
 import DetailCanvas from './DetailCanvas';
-import React, { useState, useEffect, SetStateAction } from "react"
-import { resolvePath, useParams } from 'react-router-dom';
+import { useState, useEffect } from "react"
+import { useParams } from 'react-router-dom';
 import LoadingPage from "../Loading/LoadingPage";
 const Root = styled.div`
   width:inherit;
   height:inherit;
-`
+`//디테일 페이지 전체박스 스타일
 const Main = styled.div`
   width:inherit;
   height:620px;
   display:flex;
-`
+`//디테일 페이지 메인부분 스타일
 const Side = styled.div`
   width:300px;
   height:inherit;
-&>div:nth-child(1){
-  height:100px;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  &>input{
-    width:80px;
-    height:50px;
-    font-size:2em;
-    font-family: SCD-5;
-    border-radius:5px;
-    &:hover{
-      background-color: #ccc;
+  &>div:nth-child(1){
+    height:100px;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    &>input{
+      width:80px;
+      height:50px;
+      font-size:2em;
+      font-family: SCD-5;
+      border-radius:5px;
+      &:hover{
+        background-color: #ccc;
+      }
     }
-  }
-}
-&>div:nth-child(2){
-  width:inherit;
-  height:520px;
-  display:flex;
-  background-color: #fff;
-  border: 3px #ccc solid ;
-  border-radius: 20px;
-}
+  }//사이드 1주일,1개월,1년 버튼 스타일
+  &>div:nth-child(2){
+    width:inherit;
+    height:520px;
+    display:flex;
+    background-color: #fff;
+    border: 3px #ccc solid ;
+    border-radius: 20px;
+  }// 사이드 시가,고가,저가 등 박스 스타일
 `
 
 const time_format = (time:string) => {

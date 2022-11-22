@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import theme from "@/Theme/theme";
-import React, { useState, useEffect, SetStateAction } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 
 const Search = styled.div`
@@ -12,7 +12,8 @@ const Search = styled.div`
     flex-direction: column;
     z-index:3;
   }
-`
+`//검색창 전체 스타일
+
 const Input = styled.input`
   width: 400px;
   height: 80px;
@@ -21,7 +22,8 @@ const Input = styled.input`
   border: none;
   border-radius: 10px;
   padding-left: 20px;
-`
+`//검색창 input 스타일
+
 const Div = styled.div`
   background-color: rgba(0,0,0,0.8);
   width:400px;
@@ -33,13 +35,15 @@ const Div = styled.div`
     padding:10px;
     font-size: 30px;
     font-family: 'SCD-5';
+    color: #fff;
     &:hover{
       background-color: rgba(0,0,0,0.3);
       color: ${theme.mainCol};
       cursor: pointer;
     }
   }
-  `
+`// 검색결과 창 스타일
+
 const SearchBox = () => {
   const [search,setSearch] = useState("");
   const [clicked,setClicked] = useState(false);
@@ -52,7 +56,7 @@ const SearchBox = () => {
       setSearchData(res);
     })
   },[])
-  //모든 회사 데이터 가져오기.
+  //모든 회사의 이름과 코드 가져오기.
   const onChange = (e:any) => {
     setSearch(e.target.value);
     setClicked(true);

@@ -1,7 +1,6 @@
 import StockItem from '@/Components/StockItem';
-import theme from '@/Theme/theme';
 import styled from 'styled-components';
-import React, { useState, useEffect, SetStateAction } from "react"
+import { useState, useEffect } from "react"
 import LoadingPageSide from '@/Pages/Loading/LoadingPageSide';
 
 const SidebarBox = styled.div`
@@ -20,7 +19,7 @@ const SidebarBox = styled.div`
     font-size: 3rem;
     font-family: SCD-7;
   }
-`;
+`// 사이드바 전체 스타일
 
 const StockBox = styled.div`
   margin-top: 5px;
@@ -34,7 +33,7 @@ const StockBox = styled.div`
     width:95%;
     height:10%;
   }
-`;
+`// 순위 박스 10개 들어가있는 큰 박스 스타일
 
 export interface rankData {
   DB: string,
@@ -42,7 +41,7 @@ export interface rankData {
   name: string,
   value: number,
   code: number
-  }
+}// DB에서 가져오는 순위 데이터 interface
 
 const Sidebar = () => {
   const [rankData,setRankData] = useState([])
@@ -56,6 +55,7 @@ const Sidebar = () => {
       setLoading(false)
     })
   },[])
+  //kospi 월별 거래량 순위 top10 데이터 가져오기
 
   if(loading){
     return (
@@ -63,7 +63,7 @@ const Sidebar = () => {
         <LoadingPageSide></LoadingPageSide>
       </SidebarBox>
     )
-  }
+  }//로딩중엔 사이드바 전용 로딩페이지
 
   if(!loading){
     return (
