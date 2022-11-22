@@ -57,10 +57,10 @@ const DetailData = ({data}: { data : any }) => {
         <p>거래량</p>
       </Div>
       <DetailBox>
-        <p>{data.open}</p>
-        <p>{data.high}</p>
-        <p>{data.low}</p>
-        <p>{data.close}</p>
+        <p>{data.open.toLocaleString()}</p>
+        <p>{data.high.toLocaleString()}</p>
+        <p>{data.low.toLocaleString()}</p>
+        <p>{data.close.toLocaleString()}</p>
         <p>{data.volume}</p>
         <h1 style={{color}}>전날 대비 {percent.toFixed(2)}% {text}</h1>
         <h1>{data.day} 기준</h1>
