@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import theme from '@/Theme/theme';
-import { rankData } from '../Layout/Sidebar';
+import { rankData } from './../Layout/Sidebar';
 import { Link } from 'react-router-dom';
 
 const ItemBox = styled.div`
@@ -11,6 +11,7 @@ const ItemBox = styled.div`
   justify-content: center;
   border-radius: 10px;
   font-family: SCD-5;
+  //사이드바 거래량 박스 1개
   & > div {
     width: 100%;
     height: 100%;
@@ -25,14 +26,14 @@ const ItemBox = styled.div`
       transform: scale(1.05);
       cursor: pointer;
       transition: 0.3s;
-    }
+    } // 마우스 올리면 커짐
     & > div:nth-child(1) {
       width: 50%;
-    }
+    } // 종목 이름
     & > div:nth-child(2) {
       width: 40%;
       font-size: 16px;
-    }
+    } // 거래량, 종가
   }
 `;
 
