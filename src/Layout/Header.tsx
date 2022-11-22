@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import theme from '@/Theme/theme';
 import { useNavigate, Link } from 'react-router-dom';
-import { useRef } from 'react';
 import SearchBox from '@/Components/SearchBox';
 
 const HeaderBox = styled.div`
+  /* 헤더 메뉴바 전체 스타일링 컴포넌트 */
   width: 1920px;
   height: 15%;
   display: flex;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
   align-items: center;
   flex-direction: row;
   background: linear-gradient(150deg, #eb72eb, orange);
@@ -17,6 +17,7 @@ const HeaderBox = styled.div`
 
   & > ul {
     &:hover {
+      /* 살짝만 닿아도 돌아버리는 대표님 */
       transform: rotate(1800deg);
       transition: 5s;
 
