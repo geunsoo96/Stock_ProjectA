@@ -1,10 +1,9 @@
-import styled from "styled-components";
-import theme from "@/Theme/theme";
-import { useNavigate } from "react-router-dom";
-import { useState, useRef, useEffect } from "react";
-
-// import { current } from "@reduxjs/toolkit";
+import styled from 'styled-components';
+import theme from '@/Theme/theme';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 const LottoParent = styled.div`
+  /* 랜덤추천페이지 전체 스타일링 설정값 */
   width: inherit;
   height: 700px;
   display: flex;
@@ -34,8 +33,9 @@ const LottoParent = styled.div`
     align-items: center;
   }
 `;
-// 
+//
 const LottoButton = styled.button`
+  /* 뒤로가기 버튼 */
   width: 300px;
   height: 50px;
   border-radius: 20px;
@@ -52,63 +52,66 @@ const LottoButton = styled.button`
 const Lotto = () => {
   const navigate = useNavigate();
   const [shake, setShake] = useState(false);
-  const [lotto,setLotto] = useState(null);
-  const [data, setData] = useState("");
-  const [img, setImg] = useState("/img/image.png");
+  const [data, setData] = useState('');
+  const [img, setImg] = useState('/img/image.png');
   const imgBox = [
-    "/img/절규하는 대표님.jpg",
-    "/img/생각하는 대표님.jpeg",
-    "/img/총든 대표님.jpg",
-    "/img/감탄하는 대표님.jpg",
-  ]
+    // 랜덤뽑기때마다 이벤트성으로 잠깐 보이는 랜덤이미지
+    '/img/절규하는 대표님.jpg',
+    '/img/생각하는 대표님.jpeg',
+    '/img/총든 대표님.jpg',
+    '/img/감탄하는 대표님.jpg',
+  ];
 
-    const getData:any = () => {fetch("http://127.0.0.1:5000/randomName")
-    .then((res)=>res.json())
-    .then((res:any)=>{
-      setData(res.name)
-      console.log(res)
-    })}
+  const getData: any = () => {
+    fetch('http://127.0.0.1:5000/randomName')
+      // 서버에서 가공된 코스피 랜덤뽑기 데이터
+      .then((res) => res.json())
+      .then((res: any) => {
+        setData(res.name);
+        console.log(res);
+      });
+  };
 
-  if(data === undefined) {
+  if (data === undefined) {
     return null;
   }
   const animate = () => {
-    if(shake === false)
-    {
-    setShake((current) => !current);
-    setTimeout(() => {
-      getData();
-      let random = Math.floor(Math.random()*imgBox.length);
-      setImg(imgBox[random])
-      setTimeout(()=>{
-        setShake(false);
-        setImg("/img/image.png")
-      },500)
-    }, 3000);
-    }else{
-      alert("중복 클릭 안대용~")
+    // 이미지가 3초동안 돌아가면 랜덤이미지와 함께 랜덤 데이터가 출력
+    if (shake === false) {
+      setShake((current) => !current);
+      setTimeout(() => {
+        getData();
+        let random = Math.floor(Math.random() * imgBox.length);
+        setImg(imgBox[random]);
+        setTimeout(() => {
+          setShake(false);
+          setImg('/img/image.png');
+        }, 500);
+      }, 3000);
+    } else {
+      alert('중복 클릭 안대용~');
     }
   };
 
   return (
     <LottoParent>
       <img
-        src= {img}
+        src={img}
         style={{
-          transform: shake ? "rotate(360deg)" : "",
-          transition: shake ? "3s" : "",
+          transform: shake ? 'rotate(360deg)' : '',
+          transition: shake ? '3s' : '',
         }}
-        onClick={() => {animate()}}
+        onClick={() => {
+          animate();
+        }}
         height={280}
       ></img>
       <div>↑↑↑클릭↑↑↑</div>
       <div>침팬지의 추천종목</div>
-      <div>
-        {data}
-      </div>
+      <div>{data}</div>
       <LottoButton
         onClick={() => {
-          navigate("/algorithm");
+          navigate('/algorithm');
         }}
       >
         뒤로가기

@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react';
 import DetailCanvas from '../Detail/DetailCanvas';
 
 const TopBox = styled.div`
+  /* 전체 차트가 구현될 부모 스타일드 컴포넌트 */
   width: inherit;
   height: inherit;
-  /* background-color: rgba(222, 100, 1, 0.8); */
   & > div:nth-child(1) {
     & > div {
       font-size: 4rem;
@@ -30,6 +30,7 @@ const TopBox = styled.div`
 `;
 
 const ItemBox = styled.div`
+  /* 차트 상단 데이터 스타일드 컴포넌트 */
   display: flex;
   height: 500px;
   & > div:nth-child(1) {
@@ -79,6 +80,7 @@ const ItemBox = styled.div`
 `;
 
 const TopBottomBox = styled.div`
+  /* 일봉 데이터가 보여질 스타일드 컴포넌트 */
   width: inherit;
   height: 14%;
   background-color: ${theme.mainCol};
@@ -94,6 +96,7 @@ const TopBottomBox = styled.div`
 `;
 
 export interface TopdummyData {
+  // ex) 상한가:string ___ 41990원:number
   type: string;
   value: number;
 }
@@ -102,54 +105,55 @@ function Top() {
   const [samsungD, setSamsungD] = useState<any>([{}]);
   const [samsungM, setSamsungM] = useState<any>(null);
   const [samsungAll, setSamsungAll] = useState<any>(null);
-  
-  const time_format = (time:string) => {
+
+  const time_format = (time: string) => {
+    // 일,월봉 데이터가 구현될 차트 함수
     let date = new Date(time);
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
     let day = date.getDate();
-    return(
-      `${year}-${month >= 10 ? month : "0" + month}-${
-        day >= 10 ? day : "0" + day
-      }`
-    )
-  }
+    return `${year}-${month >= 10 ? month : '0' + month}-${day >= 10 ? day : '0' + day}`;
+  };
 
-  useEffect(()=>{
-    fetch("http://127.0.0.1:5000/samsungPrice_d")
-    .then((res)=>res.json())
-    .then((res:any)=>{
-      setSamsungD(res)
-    })
-  },[])
+  useEffect(() => {
+    fetch('http://127.0.0.1:5000/samsungPrice_d')
+      // 삼성전자 일봉기준 가격 데이터
+      .then((res) => res.json())
+      .then((res: any) => {
+        setSamsungD(res);
+      });
+  }, []);
 
-  useEffect(()=>{
-    fetch("http://127.0.0.1:5000/samsungPrice_m")
-    .then((res)=>res.json())
-    .then((res:any)=>{
-      setSamsungM(res)
-    })
-  },[])
+  useEffect(() => {
+    fetch('http://127.0.0.1:5000/samsungPrice_m')
+      // 삼성전자 월봉기준 가격 데이터
+      .then((res) => res.json())
+      .then((res: any) => {
+        setSamsungM(res);
+      });
+  }, []);
 
-  useEffect(()=>{
-    fetch("http://127.0.0.1:5000/samsungPrice_dayAll")
-    .then((res)=>res.json())
-    .then((res:any)=>{
-      setSamsungAll(res)
-    })
-  },[])
+  useEffect(() => {
+    fetch('http://127.0.0.1:5000/samsungPrice_dayAll')
+      // 삼성전자 날짜 데이터
+      .then((res) => res.json())
+      .then((res: any) => {
+        setSamsungAll(res);
+      });
+  }, []);
 
-  if(samsungD === null){
+  if (samsungD === null) {
     return null;
   }
-  if(samsungM === null){
+  if (samsungM === null) {
     return null;
   }
-  if(samsungAll === null){
+  if (samsungAll === null) {
     return null;
   }
 
   const SamsungMonthData = [
+    // 월봉 구현될 객체
     { type: '시가', value: samsungM[0].open },
     { type: '고가', value: samsungM[0].high },
     { type: '저가', value: samsungM[0].low },
@@ -158,27 +162,32 @@ function Top() {
   ];
 
   const SamsungDayData = [
+    // 일봉 구현될 객체
     { type: '당일고가', value: samsungD[0].high },
     { type: '당일저가', value: samsungD[0].low },
-    { type: '상한가', value: samsungD[0].open*1.3 },
-    { type: '하한가', value: samsungD[0].open*0.7 },
+    { type: '상한가', value: samsungD[0].open * 1.3 },
+    // 30% 상승
+    { type: '하한가', value: samsungD[0].open * 0.7 },
+    // 30% 하락
   ];
-  
-  const graphMap = (data:any) => {
-    console.log(data)
-    let arr = []
-    for(let i = 0; i < data.length; i++){
-      arr.push({x:time_format(data[i].day),y:data[i].close});
+
+  const graphMap = (data: any) => {
+    // 그래프에 구현될 삼성전자 종가기준 일봉 데이터 넣는 함수
+    console.log(data);
+    let arr = [];
+    for (let i = 0; i < data.length; i++) {
+      arr.push({ x: time_format(data[i].day), y: data[i].close });
     }
-    return arr
-  }
-  
+    return arr;
+  };
+
   const graphData = {
     graph: graphMap(samsungAll),
-    max:80000,
-    min:60000,
-    minus:20000
-  }
+    // 위에 함수 호출
+    max: 80000,
+    min: 60000,
+    minus: 20000,
+  };
 
   return (
     <TopBox>
@@ -191,7 +200,7 @@ function Top() {
       </div>
       <hr />
       <ItemBox>
-      <DetailCanvas data={graphData}></DetailCanvas>
+        <DetailCanvas data={graphData}></DetailCanvas>
         <div>
           <div>
             <div>항목</div>

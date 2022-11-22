@@ -2,6 +2,7 @@ import { TopdummyData } from './../Pages/Top/Top';
 import styled from 'styled-components';
 
 const ItemBox = styled.div`
+  /* 삼성전자 월봉 데이터 스타일드 컴포넌트 */
   & > div {
     width: 110px;
     display: flex;

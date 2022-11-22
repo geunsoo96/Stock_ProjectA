@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import theme from "@/Theme/theme";
-import { useNavigate } from "react-router-dom";
-import KospiItem from "./KospiItem";
-import { useEffect, useState } from "react";
-import LoadingPage from "../Loading/LoadingPage";
+import styled from 'styled-components';
+import theme from '@/Theme/theme';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import LoadingPage from '../Loading/LoadingPage';
+import StockItem from './StockItem';
 const AlgorithmParent = styled.div`
   /* 알고리즘 추천주 페이지 전체 설정 */
   width: inherit;
@@ -20,6 +20,7 @@ const AlgorithmParent = styled.div`
   }
 `;
 const StockBox = styled.div`
+  /* 주식 리스트 보여줄 박스 */
   width: 1200px;
   display: flex;
   justify-content: space-around;
@@ -38,6 +39,7 @@ const StockBox = styled.div`
   }
 `;
 const StockList = styled.div`
+  /* 주식 종목 리스트 */
   width: 300px;
   height: 500px;
   background-color: white;
@@ -49,6 +51,7 @@ const StockList = styled.div`
   align-items: center;
 `;
 const AlgorithmButton = styled.button`
+  /* 침팬지 추천받기 페이지로 넘어가는 링크 */
   width: 300px;
   height: 50px;
   border-radius: 10px;
@@ -63,31 +66,32 @@ const AlgorithmButton = styled.button`
   }
 `;
 const Algorithm = () => {
-
   const navigate = useNavigate();
-
-  const [kospi,setKospi] = useState([]);
-  const [kosdak,setKosdak] = useState([]);
+  const [kospi, setKospi] = useState([]);
+  const [kosdak, setKosdak] = useState([]);
   const [loading, setLoading] = useState(false);
-  useEffect(()=>{
+  useEffect(() => {
     setLoading(true);
-    fetch("http://127.0.0.1:5000/close_list/kospi")
-    .then((res)=>res.json())
-    .then((res:any)=>{
-      setKospi(res);
-      console.log(res)
-      setLoading(false);
-    });
-    fetch("http://127.0.0.1:5000/close_list/kosdak")
-    .then((res)=>res.json())
-    .then((res:any)=>{
-      setKosdak(res);
-      console.log(res)
-      setLoading(false);
-    });
-  },[])
+    fetch('http://127.0.0.1:5000/close_list/kospi')
+      // 코스피 종가 데이터
+      .then((res) => res.json())
+      .then((res: any) => {
+        setKospi(res);
+        console.log(res);
+        setLoading(false);
+      });
+    fetch('http://127.0.0.1:5000/close_list/kosdak')
+      // 코스닥 종가 데이터
+      .then((res) => res.json())
+      .then((res: any) => {
+        setKosdak(res);
+        console.log(res);
+        setLoading(false);
+      });
+  }, []);
   if (loading) {
-    return (<LoadingPage></LoadingPage>)
+    // 만약 로딩중이면 스타일링된 로딩페이지 출력
+    return <LoadingPage></LoadingPage>;
   }
   return (
     <AlgorithmParent>
@@ -96,23 +100,23 @@ const Algorithm = () => {
         <div>
           <h2>KOSPI</h2>
           <StockList>
-            {kospi.map((value, index)=>{
-              return <KospiItem key={index} data={value}></KospiItem>
+            {kospi.map((value, index) => {
+              return <StockItem key={index} data={value}></StockItem>;
             })}
           </StockList>
         </div>
         <div>
           <h2>KOSDAQ</h2>
           <StockList>
-          {kosdak.map((value, index)=>{
-              return <KospiItem key={index} data={value}></KospiItem>
+            {kosdak.map((value, index) => {
+              return <StockItem key={index} data={value}></StockItem>;
             })}
           </StockList>
         </div>
       </StockBox>
       <AlgorithmButton
         onClick={() => {
-          navigate("/lotto");
+          navigate('/lotto');
         }}
       >
         침팬지 추천받기
